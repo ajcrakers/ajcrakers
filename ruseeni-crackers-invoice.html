@@ -1,0 +1,447 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Ruseeni Crackers – Tax Invoice</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Tiro+Devanagari+Tamil&family=Playfair+Display:wght@700&family=Inter:wght@400;500;600&display=swap');
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      background: #f0ece4;
+      font-family: 'Inter', sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+      padding: 40px 20px;
+      min-height: 100vh;
+    }
+
+    .invoice-wrapper {
+      width: 794px;
+      background: #fff;
+      border: 1.5px solid #222;
+      print-color-adjust: exact;
+    }
+
+    /* ── TOP STRIP ── */
+    .top-strip {
+      background: #b91c1c;
+      color: #fff;
+      text-align: center;
+      padding: 6px 12px;
+      font-size: 11px;
+      letter-spacing: 0.5px;
+    }
+    .tamil-deity {
+      font-size: 13px;
+      letter-spacing: 1px;
+    }
+
+    /* ── HEADER ROW ── */
+    .header-grid {
+      display: grid;
+      grid-template-columns: 1fr 180px;
+      border-bottom: 1.5px solid #222;
+    }
+    .header-left {
+      padding: 16px 20px;
+      border-right: 1.5px solid #222;
+    }
+    .gstin-badge {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 6px;
+    }
+    .gstin-label {
+      font-size: 11px;
+      font-weight: 600;
+      color: #555;
+    }
+    .gstin-num {
+      font-weight: 700;
+      font-size: 12px;
+      color: #111;
+    }
+    .tax-invoice-badge {
+      background: #b91c1c;
+      color: #fff;
+      font-size: 10px;
+      font-weight: 700;
+      padding: 2px 8px;
+      border: 1px solid #7f1d1d;
+      letter-spacing: 1px;
+    }
+    .brand-name {
+      font-family: 'Playfair Display', serif;
+      font-size: 38px;
+      color: #b91c1c;
+      line-height: 1.1;
+      letter-spacing: -0.5px;
+    }
+    .brand-tagline {
+      font-size: 11.5px;
+      font-weight: 600;
+      color: #333;
+      border-top: 1px solid #ddd;
+      border-bottom: 1px solid #ddd;
+      padding: 3px 0;
+      margin: 4px 0;
+      letter-spacing: 0.3px;
+    }
+    .brand-address {
+      font-size: 11px;
+      color: #444;
+      line-height: 1.5;
+    }
+    .brand-address strong {
+      font-size: 12px;
+      color: #111;
+    }
+
+    .header-right {
+      padding: 12px 14px;
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+    }
+    .meta-block {
+      border-bottom: 1px solid #bbb;
+      padding: 8px 0;
+      flex: 1;
+    }
+    .meta-block:last-child { border-bottom: none; }
+    .meta-label {
+      font-size: 9.5px;
+      font-weight: 600;
+      color: #888;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      margin-bottom: 14px;
+    }
+    .meta-line {
+      border-bottom: 1px solid #aaa;
+      margin-top: 2px;
+    }
+
+    /* ── TO BLOCK ── */
+    .to-block {
+      display: grid;
+      grid-template-columns: 1fr 180px;
+      border-bottom: 1.5px solid #222;
+    }
+    .to-left {
+      padding: 10px 20px;
+      border-right: 1.5px solid #222;
+    }
+    .to-label {
+      font-size: 10px;
+      font-weight: 600;
+      color: #888;
+      text-transform: uppercase;
+      margin-bottom: 2px;
+    }
+    .to-line {
+      border-bottom: 1px solid #aaa;
+      margin: 8px 0;
+    }
+    .to-right {
+      padding: 10px 14px;
+    }
+    .date-label {
+      font-size: 10px;
+      color: #888;
+      font-weight: 600;
+    }
+    .date-line {
+      border-bottom: 1px solid #aaa;
+      margin-top: 14px;
+    }
+
+    /* ── TABLE ── */
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 11.5px;
+    }
+    thead tr {
+      background: #1c1c1c;
+      color: #fff;
+    }
+    thead th {
+      padding: 7px 10px;
+      font-weight: 600;
+      text-align: center;
+      letter-spacing: 0.3px;
+      font-size: 10.5px;
+      border-right: 1px solid #444;
+    }
+    thead th:first-child { text-align: center; width: 50px; }
+    thead th.col-particulars { text-align: left; }
+    thead th:last-child { border-right: none; }
+
+    .th-sub { font-size: 9px; font-weight: 400; color: #bbb; }
+
+    tbody td {
+      padding: 6px 10px;
+      border-right: 1px solid #ddd;
+      border-bottom: 1px solid #eee;
+      vertical-align: top;
+    }
+    tbody td:last-child { border-right: none; }
+    tbody td.sno { text-align: center; font-weight: 700; }
+    tbody td.particulars { font-weight: 600; }
+
+    .item-rows td { height: 28px; }
+
+    /* ── SUMMARY SECTION ── */
+    .summary-grid {
+      display: grid;
+      grid-template-columns: 1fr 180px;
+      border-top: 1.5px solid #222;
+    }
+    .hsn-block {
+      padding: 12px 20px;
+      border-right: 1.5px solid #222;
+      display: flex;
+      align-items: flex-end;
+    }
+    .hsn-badge {
+      display: inline-block;
+      border: 1.5px solid #222;
+      padding: 5px 14px;
+      font-size: 11.5px;
+      font-weight: 700;
+      letter-spacing: 0.5px;
+      color: #111;
+    }
+    .tax-summary {
+      padding: 0;
+    }
+    .tax-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 5px 14px;
+      border-bottom: 1px solid #eee;
+      font-size: 11px;
+    }
+    .tax-row:last-child { border-bottom: none; }
+    .tax-row.total-row {
+      background: #1c1c1c;
+      color: #fff;
+      font-weight: 700;
+      font-size: 12px;
+      padding: 7px 14px;
+    }
+    .tax-name { font-weight: 600; color: #333; }
+    .total-row .tax-name { color: #fff; }
+    .tax-val {
+      border-bottom: 1px solid #aaa;
+      min-width: 80px;
+      text-align: right;
+      padding-bottom: 1px;
+      font-size: 11px;
+      color: #555;
+    }
+    .total-row .tax-val { border-bottom: none; color: #fff; }
+
+    /* ── RUPEES IN WORDS ── */
+    .rupees-block {
+      border-top: 1.5px solid #222;
+      padding: 10px 20px;
+      font-size: 11px;
+    }
+    .rupees-label { font-weight: 600; color: #333; }
+    .rupees-line {
+      border-bottom: 1px solid #aaa;
+      margin: 6px 0 4px;
+    }
+    .rupees-only {
+      text-align: right;
+      font-size: 10.5px;
+      color: #555;
+    }
+
+    /* ── FOOTER ── */
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      border-top: 1.5px solid #222;
+      padding: 10px 20px;
+      align-items: flex-end;
+    }
+    .footer-note {
+      font-size: 10px;
+      color: #555;
+      line-height: 1.7;
+    }
+    .footer-note strong { color: #111; }
+    .footer-sign {
+      text-align: right;
+      font-size: 11px;
+    }
+    .for-label {
+      font-weight: 700;
+      color: #b91c1c;
+      font-size: 12px;
+    }
+    .partner-label {
+      font-size: 10px;
+      color: #555;
+      margin-top: 28px;
+      letter-spacing: 1px;
+      font-weight: 600;
+      text-transform: uppercase;
+    }
+
+    /* ── PRINT ── */
+    @media print {
+      body { background: none; padding: 0; }
+      .invoice-wrapper { border: none; width: 100%; }
+    }
+  </style>
+</head>
+<body>
+<div class="invoice-wrapper">
+
+  <!-- TOP DEITY STRIP -->
+  <div class="top-strip">
+    <div>ஊ</div>
+    <div class="tamil-deity">ஶ்ரீ வீருசின்னம்மாள் துணை</div>
+  </div>
+
+  <!-- HEADER -->
+  <div class="header-grid">
+    <div class="header-left">
+      <div class="gstin-badge">
+        <span class="gstin-label">GSTIN :</span>
+        <span class="gstin-num">33ABHFR5605A1ZO</span>
+        <span class="tax-invoice-badge">TAX INVOICE</span>
+      </div>
+      <div class="brand-name">Ruseeni Crackers</div>
+      <div class="brand-tagline">Suppliers of Fancy Fireworks &amp; Crackers</div>
+      <div class="brand-address">
+        3/339-5, Peranaickenpatti to Tayilpatti Road,<br>
+        <strong>TAYILPATTI – 626 128. Virudhunagar Dist. Tamilnadu.</strong>
+      </div>
+    </div>
+    <div class="header-right">
+      <div class="meta-block">
+        <div class="meta-label">Transporter</div>
+        <div class="meta-line"></div>
+      </div>
+      <div class="meta-block">
+        <div class="meta-label">Party's GSTIN No.</div>
+        <div class="meta-line"></div>
+      </div>
+      <div class="meta-block">
+        <div class="meta-label">Invoice No.</div>
+        <div class="meta-line"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- TO / DATE -->
+  <div class="to-block">
+    <div class="to-left">
+      <div class="to-label">To / M/s.</div>
+      <div class="to-line"></div>
+      <div class="to-line"></div>
+      <div class="to-line"></div>
+    </div>
+    <div class="to-right">
+      <div class="date-label">Date :</div>
+      <div class="date-line"></div>
+    </div>
+  </div>
+
+  <!-- LINE ITEMS TABLE -->
+  <table>
+    <thead>
+      <tr>
+        <th>S.No.</th>
+        <th class="col-particulars">PARTICULARS</th>
+        <th>QUANTITY</th>
+        <th>RATE PER<br><span class="th-sub">Rs. &nbsp;&nbsp; Ps.</span></th>
+        <th>VALUE<br><span class="th-sub">Rs. &nbsp;&nbsp; Ps.</span></th>
+      </tr>
+    </thead>
+    <tbody>
+      <!-- Item 1 header -->
+      <tr>
+        <td class="sno">1.</td>
+        <td class="particulars" colspan="4"><strong>Assorted Crackers</strong></td>
+      </tr>
+      <!-- Blank item rows -->
+      <tr class="item-rows"><td></td><td></td><td></td><td></td><td></td></tr>
+      <tr class="item-rows"><td></td><td></td><td></td><td></td><td></td></tr>
+      <tr class="item-rows"><td></td><td></td><td></td><td></td><td></td></tr>
+      <tr class="item-rows"><td></td><td></td><td></td><td></td><td></td></tr>
+      <tr class="item-rows"><td></td><td></td><td></td><td></td><td></td></tr>
+      <tr class="item-rows"><td></td><td></td><td></td><td></td><td></td></tr>
+      <tr class="item-rows"><td></td><td></td><td></td><td></td><td></td></tr>
+      <tr class="item-rows"><td></td><td></td><td></td><td></td><td></td></tr>
+      <tr class="item-rows"><td></td><td></td><td></td><td></td><td></td></tr>
+      <tr class="item-rows"><td></td><td></td><td></td><td></td><td></td></tr>
+    </tbody>
+  </table>
+
+  <!-- SUMMARY: HSN + TAX -->
+  <div class="summary-grid">
+    <div class="hsn-block">
+      <div class="hsn-badge">HSN CODE : 3604</div>
+    </div>
+    <div class="tax-summary">
+      <div class="tax-row">
+        <span class="tax-name">Sub Total</span>
+        <span class="tax-val">&nbsp;</span>
+      </div>
+      <div class="tax-row">
+        <span class="tax-name">SGST &nbsp; %</span>
+        <span class="tax-val">&nbsp;</span>
+      </div>
+      <div class="tax-row">
+        <span class="tax-name">CGST &nbsp; %</span>
+        <span class="tax-val">&nbsp;</span>
+      </div>
+      <div class="tax-row">
+        <span class="tax-name">IGST &nbsp; %</span>
+        <span class="tax-val">&nbsp;</span>
+      </div>
+      <div class="tax-row">
+        <span class="tax-name">Round Off</span>
+        <span class="tax-val">&nbsp;</span>
+      </div>
+      <div class="tax-row total-row">
+        <span class="tax-name">Total Amount</span>
+        <span class="tax-val">&nbsp;</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- RUPEES IN WORDS -->
+  <div class="rupees-block">
+    <span class="rupees-label">Rupees </span>
+    <div class="rupees-line"></div>
+    <div class="rupees-only">……………………………………………………………………………only</div>
+  </div>
+
+  <!-- FOOTER -->
+  <div class="footer-grid">
+    <div class="footer-note">
+      <strong>Subject to Sattur Jurisdiction Only</strong><br>
+      E.&amp;O.E.
+    </div>
+    <div class="footer-sign">
+      <div class="for-label">For Ruseeni Crackers</div>
+      <div class="partner-label">Partner</div>
+    </div>
+  </div>
+
+</div>
+</body>
+</html>
