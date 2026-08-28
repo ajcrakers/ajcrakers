@@ -692,7 +692,7 @@ function loadProducts() {
         // Convert and map products
         const products = Object.entries(data).map(([name, info]) => ({
           name,
-          tamil: info.tamil || "",
+          tamil: info.tamilName || "",
           price: Number(info.price) || 0,
           offerprice: Number(info.offerprice) || 0,
           unit: info.unit || "-",
