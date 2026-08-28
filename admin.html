@@ -75,6 +75,135 @@
         flex-direction: column;
       }
     }
+	/* Assorted Crackers Bill Modal */
+
+.modal-overlay {
+  display: none;
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  background: rgba(0, 0, 0, 0.55);
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+}
+
+.modal-overlay.show {
+  display: flex;
+}
+
+.modal-box {
+  width: 100%;
+  max-width: 550px;
+  background: #ffffff;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+}
+
+.modal-header {
+  background: #8e44ad;
+  color: white;
+  padding: 15px 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.modal-header h2 {
+  margin: 0;
+  font-size: 20px;
+}
+
+.close-btn {
+  border: none;
+  background: transparent;
+  color: white;
+  font-size: 28px;
+  cursor: pointer;
+}
+
+.modal-body {
+  padding: 20px;
+}
+
+.modal-field {
+  margin-bottom: 15px;
+}
+
+.modal-field label {
+  display: block;
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+
+.modal-field input,
+.modal-field textarea {
+  width: 100%;
+  box-sizing: border-box;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 14px;
+}
+
+.modal-field input:focus,
+.modal-field textarea:focus {
+  outline: none;
+  border-color: #8e44ad;
+}
+
+.modal-row {
+  display: flex;
+  gap: 15px;
+}
+
+.modal-row .modal-field {
+  flex: 1;
+}
+
+.modal-footer {
+  padding: 15px 20px;
+  background: #f5f5f5;
+  border-top: 1px solid #ddd;
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+}
+
+.modal-cancel,
+.modal-generate {
+  border: none;
+  padding: 10px 18px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.modal-cancel {
+  background: #777;
+  color: white;
+}
+
+.modal-generate {
+  background: #8e44ad;
+  color: white;
+}
+
+.modal-cancel:hover {
+  background: #555;
+}
+
+.modal-generate:hover {
+  background: #732d91;
+}
+
+@media (max-width: 600px) {
+  .modal-row {
+    flex-direction: column;
+    gap: 0;
+  }
+}
   </style>
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
@@ -122,7 +251,7 @@
       <button class="button" onclick="printBill()">🧾 Print Bill</button>
       <button class="button" style="background-color:#5cb85c; margin-left: 10px;" onclick="printChecklist()">📋 Print Checklist</button>
       <button class="button" style="background-color:#5bc0de; margin-left: 10px;" onclick="downloadCustomerInfo()">📥 Download Customer Info</button>
-
+	<button class="button" style="background-color:#8e44ad; margin-left: 10px;" onclick="openAssortedBillModal()">🧾 Get Assorted Crackers Bill</button>
       <script>
         const { jsPDF } = window.jspdf;
         let currentOffer = 80;
@@ -309,7 +438,121 @@ function printChecklist() {
 
   doc.save(`Checklist_${name.replace(/\s+/g, '_')}.pdf`);
 }
+function openAssortedBillModal() {
+  document
+    .getElementById('assortedBillModal')
+    .classList.add('show');
+}
 
+
+function closeAssortedBillModal() {
+  document
+    .getElementById('assortedBillModal')
+    .classList.remove('show');
+}
+
+
+function generateAssortedBill() {
+
+  const name =
+    document.getElementById('assortedName').value.trim();
+
+  const address =
+    document.getElementById('assortedAddress').value.trim();
+
+  const phone =
+    document.getElementById('assortedPhone').value.trim();
+
+  const amount =
+    parseFloat(
+      document.getElementById('assortedAmount').value
+    );
+
+  const quantity =
+    parseInt(
+      document.getElementById('assortedQuantity').value,
+      10
+    );
+
+  const gstPercentage =
+    parseFloat(
+      document.getElementById('assortedGst').value
+    );
+
+
+  // Validate name
+
+  if (!name) {
+    alert('Please enter customer name.');
+    return;
+  }
+
+
+  // Validate address
+
+  if (!address) {
+    alert('Please enter customer address.');
+    return;
+  }
+
+
+  // Validate amount
+
+  if (isNaN(amount) || amount <= 0) {
+    alert('Please enter a valid amount.');
+    return;
+  }
+
+
+  // Validate quantity
+
+  if (isNaN(quantity) || quantity <= 0) {
+    alert('Please enter a valid quantity.');
+    return;
+  }
+
+
+  // Validate GST
+
+  if (isNaN(gstPercentage) || gstPercentage < 0) {
+    alert('Please enter a valid GST percentage.');
+    return;
+  }
+
+
+  // Store the information temporarily
+
+  const billData = {
+    name: name,
+    address: address,
+    phone: phone,
+    amount: amount,
+    quantity: quantity,
+    gstPercentage: gstPercentage
+  };
+
+
+  localStorage.setItem(
+    'assortedCrackersBill',
+    JSON.stringify(billData)
+  );
+
+
+  // Close popup
+
+  closeAssortedBillModal();
+
+
+  /*
+   * For now, just open the existing invoice page.
+   * We will map the data into the invoice in the next step.
+   */
+
+  window.open(
+    'ruseeni-crackers-invoice',
+    '_blank'
+  );
+}
         function printBill() {
           const name = document.getElementById('customerName').value.trim();
           const address = document.getElementById('customerAddress').value.trim();
