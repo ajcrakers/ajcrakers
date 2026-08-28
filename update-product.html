@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Update Product Price - AJ Crackers</title>
+  <style>
+    body { font-family: sans-serif; padding: 30px; max-width: 600px; margin: auto; }
+    label { font-weight: bold; display: block; margin-top: 15px; }
+    select, input { padding: 10px; font-size: 16px; width: 100%; margin-top: 5px; }
+    button {
+      margin-top: 20px;
+      background-color: #28a745;
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      font-size: 16px;
+      cursor: pointer;
+    }
+    button:hover {
+      background-color: #218838;
+    }
+  </style>
+</head>
+<body>
+  <h2>🛠 Update Product Price</h2>
+
+  <label for="productDropdown">Select Product:</label>
+  <select id="productDropdown">
+    <option value="">-- Select Product --</option>
+  </select>
+
+  <label for="currentPrice">Current Price:</label>
+  <input type="text" id="currentPrice" disabled>
+
+  <label for="newPrice">New Price:</label>
+  <input type="number" id="newPrice" min="0">
+
+  <button onclick="updateProductPrice()">✅ Update Price</button>
+
+  <script>
+    let products = {};
+
+    // Load from JSON or localStorage
+   function loadProducts() {
+  const localData = localStorage.getItem('productData');
+  if (localData) {
+    const parsed = JSON.parse(localData);
+    if (Array.isArray(parsed)) {
+      // Convert array to object
+      products = {};
+      parsed.forEach(p => {
+        products[p.name] = p;
+      });
+    } else {
+      products = parsed;
+    }
+    populateDropdown();
+  } else {
+    fetch('products.json')
+      .then(res => res.json())
+      .then(data => {
+        products = {};
+        data.forEach(p => {
+          products[p.name] = p;
+        });
+        localStorage.setItem('productData', JSON.stringify(products));
+        populateDropdown();
+      })
+      .catch(err => alert("Failed to load products.json"));
+  }
+}
+
+    function populateDropdown() {
+      const dropdown = document.getElementById('productDropdown');
+      Object.keys(products).forEach(name => {
+        const option = document.createElement('option');
+        option.value = name;
+        option.textContent = name;
+        dropdown.appendChild(option);
+      });
+
+      dropdown.addEventListener('change', () => {
+        const selected = dropdown.value;
+        if (selected && products[selected]) {
+          document.getElementById('currentPrice').value = products[selected].offerprice;
+        } else {
+          document.getElementById('currentPrice').value = '';
+        }
+      });
+    }
+
+    function updateProductPrice() {
+      const name = document.getElementById('productDropdown').value;
+      const newPrice = parseFloat(document.getElementById('newPrice').value);
+
+      if (!name || isNaN(newPrice) || newPrice <= 0) {
+        alert('Please select a product and enter a valid price.');
+        return;
+      }
+
+      products[name].offerprice = newPrice;
+      localStorage.setItem('productData', JSON.stringify(products));
+      alert(`Price for "${name}" updated to ₹${newPrice}`);
+      document.getElementById('currentPrice').value = newPrice;
+      document.getElementById('newPrice').value = '';
+    }
+
+    loadProducts();
+  </script>
+</body>
+</html>
