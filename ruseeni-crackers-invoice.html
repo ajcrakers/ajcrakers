@@ -520,7 +520,8 @@ document.addEventListener('DOMContentLoaded', function () {
   const address = billData.address || '';
   const phone = billData.phone || '';
   const quantity = Number(billData.quantity) || 0;
-  const amount = Number(billData.amount) || 0;
+  const rate = 2000;
+const itemValue = quantity * rate;
   const state = billData.state || '';
   const invoiceNo = billData.invoiceNo || '';
   const billDate = billData.date || '';
@@ -556,17 +557,67 @@ document.addEventListener('DOMContentLoaded', function () {
   // -----------------------------
   // PRODUCT INFORMATION
   // -----------------------------
+const quantity = Number(billData.quantity) || 0;
+const rate = 2000;
+const itemValue = quantity * rate;
 
-  document.getElementById('invoiceQuantity').textContent =
-    quantity;
+document.getElementById('invoiceQuantity').textContent = quantity;
 
-  document.getElementById('invoiceRate').textContent =
-    'Rs. 2,000.00';
+document.getElementById('invoiceRate').textContent =
+    `Rs. ${rate.toLocaleString('en-IN', {
+        minimumFractionDigits: 2,
+        maximumFractionDigits: 2
+    })}`;
 
-  document.getElementById('invoiceValue').textContent =
-    amount.toFixed(2);
+document.getElementById('invoiceValue').textContent =
+    `Rs. ${itemValue.toLocaleString('en-IN', {
+        minimumFractionDigits: 2,
+        maximumFractionDigits: 2
+    })}`;
+const subTotal = itemValue;
+let sgst = 0;
+let cgst = 0;
+let igst = 0;
 
-
+if (billData.state === 'Tamil Nadu') {
+    sgst = subTotal * 0.09;
+    cgst = subTotal * 0.09;
+} else {
+    igst = subTotal * 0.18;
+}
+const roundOff = 0;
+const totalAmount = subTotal + sgst + cgst + igst + roundOff;
+document.getElementById('subTotal').textContent =
+    `Rs. ${subTotal.toLocaleString('en-IN', {
+        minimumFractionDigits: 2,
+        maximumFractionDigits: 2
+    })}`;
+	document.getElementById('sgstAmount').textContent =
+    `Rs. ${sgst.toLocaleString('en-IN', {
+        minimumFractionDigits: 2,
+        maximumFractionDigits: 2
+    })}`;
+	document.getElementById('cgstAmount').textContent =
+    `Rs. ${cgst.toLocaleString('en-IN', {
+        minimumFractionDigits: 2,
+        maximumFractionDigits: 2
+    })}`;
+	document.getElementById('igstAmount').textContent =
+    `Rs. ${igst.toLocaleString('en-IN', {
+        minimumFractionDigits: 2,
+        maximumFractionDigits: 2
+    })}`;
+	document.getElementById('roundOff').textContent =
+    `Rs. ${roundOff.toLocaleString('en-IN', {
+        minimumFractionDigits: 2,
+        maximumFractionDigits: 2
+    })}`;
+	document.getElementById('totalAmount').textContent =
+    `Rs. ${totalAmount.toLocaleString('en-IN', {
+        minimumFractionDigits: 2,
+        maximumFractionDigits: 2
+    })}`;
+	
   // -----------------------------
   // GST CALCULATION
   // -----------------------------
