@@ -304,29 +304,27 @@
 
 
       <div class="modal-row">
+<div class="modal-field">
+  <label for="assortedAmount">Amount (₹2,000 × Quantity)</label>
+
+  <input
+    type="number"
+    id="assortedAmount"
+    value="0"
+    readonly>
+</div>
 
         <div class="modal-field">
-          <label for="assortedAmount">Amount (₹) *</label>
+  <label for="assortedQuantity">Quantity *</label>
 
-          <input
-            type="number"
-            id="assortedAmount"
-            min="0"
-            step="0.01"
-            placeholder="Enter amount">
-        </div>
-
-
-        <div class="modal-field">
-          <label for="assortedQuantity">Quantity *</label>
-
-          <input
-            type="number"
-            id="assortedQuantity"
-            min="1"
-            step="1"
-            placeholder="Enter quantity">
-        </div>
+  <input
+    type="number"
+    id="assortedQuantity"
+    min="1"
+    step="1"
+    placeholder="Enter quantity"
+    oninput="calculateAssortedAmount()">
+</div>
 
       </div>
 
@@ -564,7 +562,14 @@ function closeAssortedBillModal() {
     .getElementById('assortedBillModal')
     .classList.remove('show');
 }
+function calculateAssortedAmount() {
+  const quantity =
+    parseInt(document.getElementById('assortedQuantity').value, 10) || 0;
 
+  const amount = quantity * 2000;
+
+  document.getElementById('assortedAmount').value = amount.toFixed(2);
+}
 
 function generateAssortedBill() {
 
@@ -577,10 +582,10 @@ function generateAssortedBill() {
   const phone =
     document.getElementById('assortedPhone').value.trim();
 
-  const amount =
-    parseFloat(
-      document.getElementById('assortedAmount').value
-    );
+if (isNaN(amount) || amount <= 0) {
+  alert('Please enter a valid amount.');
+  return;
+}
 
   const quantity =
     parseInt(
