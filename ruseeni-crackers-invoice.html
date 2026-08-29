@@ -181,11 +181,22 @@
     }
 
     /* ── TABLE ── */
-    table {
-      width: 100%;
-      border-collapse: collapse;
-      font-size: 11.5px;
-    }
+  table {
+  width: 100%;
+  display: table;
+  border-collapse: collapse;
+  font-size: 11.5px;
+  clear: both;
+}
+.invoice-wrapper > table {
+  display: table;
+  width: 100%;
+}
+
+.invoice-wrapper > .summary-grid {
+  display: grid;
+  width: 100%;
+}
     thead tr {
       background: #1c1c1c;
       color: #fff;
@@ -217,11 +228,15 @@
     .item-rows td { height: 28px; }
 
     /* ── SUMMARY SECTION ── */
-    .summary-grid {
-      display: grid;
-      grid-template-columns: 1fr 180px;
-      border-top: 1.5px solid #222;
-    }
+   .summary-grid {
+  display: grid;
+  grid-template-columns: 1fr 180px;
+  width: 100%;
+  clear: both;
+  border-top: 1.5px solid #222;
+  margin-top: 0;
+  position: relative;
+}
     .hsn-block {
       padding: 12px 20px;
       border-right: 1.5px solid #222;
