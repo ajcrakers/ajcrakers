@@ -95,6 +95,39 @@
     border-color: #8e44ad;
     box-shadow: 0 0 4px rgba(142, 68, 173, 0.25);
 }
+	  .product-search-container {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    width: 100%;
+    margin: 20px 0;
+}
+
+#productSearch {
+    flex: 1;
+    height: 48px;
+    padding: 0 15px;
+    border: 1px solid #aaa;
+    border-radius: 5px;
+    font-size: 16px;
+    box-sizing: border-box;
+}
+
+.clear-search-btn {
+    height: 48px;
+    padding: 0 22px;
+    border: none;
+    border-radius: 5px;
+    background: #777;
+    color: white;
+    font-size: 15px;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.clear-search-btn:hover {
+    background: #555;
+}
 .modal-overlay {
   display: none;
   position: fixed;
@@ -275,9 +308,16 @@
     <input
         type="text"
         id="productSearch"
-        placeholder="🔍 Search product name..."
+        placeholder="Search products by name..."
         oninput="searchProducts()"
     >
+
+    <button
+        type="button"
+        class="clear-search-btn"
+        onclick="clearProductSearch()">
+        Clear Search
+    </button>
 </div>
       <table id="productTable">
         <thead>
@@ -509,6 +549,13 @@
 
     dateInput.value = `${year}-${month}-${day}`;
   }
+}
+		 function clearProductSearch() {
+    const searchInput = document.getElementById('productSearch');
+
+    searchInput.value = '';
+
+    searchProducts();
 }
 function openAssortedBillModal() {
   const modal = document.getElementById('assortedBillModal');
