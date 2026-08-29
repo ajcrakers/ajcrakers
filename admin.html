@@ -321,16 +321,17 @@
 </div>
       <table id="productTable">
         <thead>
-          <tr>
-            <th>Crackers Name</th>
-            <th>Unit</th>
-            <th>Actual Price (Rs.)</th>
-            <th>Offer Price (Rs.)</th>
-            <th>Quantity</th>
-            <th>Total (Rs.)</th>
-          </tr>
-        </thead>
-        <tbody></tbody>
+  <tr>
+    <th>Crackers Name</th>
+    <th>Tamil Name</th>
+    <th>Unit</th>
+    <th>Actual Price (Rs.)</th>
+    <th>Offer Price (Rs.)</th>
+    <th>Quantity</th>
+    <th>Total (Rs.)</th>
+  </tr>
+</thead>
+		  <tbody></tbody>
       </table>
 <div id="grandTotalContainer" style="margin-top: 20px; font-size: 18px; font-weight: bold; text-align: right;">
   Grand Total: Rs.0.00
@@ -478,19 +479,20 @@
           fetch('products.json')
             .then(res => res.json())
             .then(data => {
-              const products = Object.entries(data).map(([name, info]) => ({
-                name,
-                unit: info.unit || '-',
-                price: Number(info.price) || 0,
-                offerprice: Number(info.offerprice) || 0,
-                category: info.category || 'Uncategorized'
-              }));
+             const products = Object.entries(data).map(([name, info]) => ({
+    name,
+    tamilName: info.tamilName || '-',
+    unit: info.unit || '-',
+    price: Number(info.price) || 0,
+    offerprice: Number(info.offerprice) || 0,
+    category: info.category || 'Uncategorized'
+}));
               renderAdminTable(products);
             })
             .catch(err => {
               console.error('Error loading products:', err);
               document.querySelector('#productTable tbody').innerHTML =
-                '<tr><td colspan="6">Failed to load products.</td></tr>';
+                '<tr><td colspan="7">Failed to load products.</td></tr>';
             });
         }
 
@@ -511,20 +513,31 @@
             const catId = `cat-${categoryIndex}`;
             const catRow = document.createElement('tr');
             catRow.className = 'category-header';
-            catRow.innerHTML = `<td colspan="6" style="cursor:pointer;text-align:left;">▼ ${category}</td>`;
+            catRow.innerHTML = `<td colspan="7" style="cursor:pointer;text-align:left;">▼ ${category}</td>`;
             tbody.appendChild(catRow);
 
             items.forEach(item => {
               const row = document.createElement('tr');
               row.className = `category-row ${catId}`;
-              row.innerHTML = `
-                <td>${item.name}</td>
-                <td>${item.unit}</td>
-                <td>Rs.${item.price.toFixed(2)}</td>
-                <td>Rs.${item.offerprice.toFixed(2)}</td>
-                <td><input type="number" min="0" step="1" placeholder="Qty" onchange="updateTotals()" oninput="validateIntegerInput(this)"
-                           data-name="${item.name}" data-price="${item.offerprice}"></td>
-                <td class="item-total">Rs.0.00</td>`;
+             row.innerHTML = `
+    <td>${item.name}</td>
+    <td>${item.tamilName}</td>
+    <td>${item.unit}</td>
+    <td>Rs.${item.price.toFixed(2)}</td>
+    <td>Rs.${item.offerprice.toFixed(2)}</td>
+    <td>
+        <input
+            type="number"
+            min="0"
+            step="1"
+            placeholder="Qty"
+            onchange="updateTotals()"
+            oninput="validateIntegerInput(this)"
+            data-name="${item.name}"
+            data-tamil-name="${item.tamilName}"
+            data-price="${item.offerprice}">
+    </td>
+    <td class="item-total">Rs.0.00</td>`;
               tbody.appendChild(row);
             });
 
