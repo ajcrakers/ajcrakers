@@ -638,69 +638,87 @@ function generateAssortedBill() {
 
   const phone =
     document.getElementById('assortedPhone').value.trim();
-const invoiceNo =
-  document.getElementById('assortedInvoiceNo').value.trim();
 
-const billDate =
-  document.getElementById('assortedDate').value;
   const quantity =
     parseInt(
       document.getElementById('assortedQuantity').value,
       10
-    );
+    ) || 0;
+
+  const invoiceNo =
+    document.getElementById('assortedInvoiceNo').value.trim();
+
+  const billDate =
+    document.getElementById('assortedDate').value;
+
+  const state =
+    document.getElementById('assortedState').value;
 
 
-
-
-  // Validate name
+  // -----------------------------
+  // VALIDATION
+  // -----------------------------
 
   if (!name) {
     alert('Please enter customer name.');
     return;
   }
 
-
-  // Validate address
-
   if (!address) {
     alert('Please enter customer address.');
     return;
   }
 
-
-  // Validate quantity
-
-  if (isNaN(quantity) || quantity <= 0) {
+  if (!quantity || quantity <= 0) {
     alert('Please enter a valid quantity.');
     return;
   }
 
-const state =
-  document.getElementById('assortedState').value;
+  if (!invoiceNo) {
+    alert('Please enter invoice number.');
+    return;
+  }
 
-if (!invoiceNo) {
-  alert('Please enter the invoice number.');
-  return;
-}
-
-if (!state) {
-  alert('Please select the state.');
-  return;
-}
+  if (!state) {
+    alert('Please select the state.');
+    return;
+  }
 
 
-  // Store the information temporarily
+  // -----------------------------
+  // CALCULATE AMOUNT
+  // -----------------------------
 
-const billData = {
-  name: name,
-  address: address,
-  phone: phone,
-  quantity: quantity,
-  state: state,
-  invoiceNo: invoiceNo,
-  date: billDate
-};
+  const rate = 2000;
+  const amount = quantity * rate;
 
+
+  // -----------------------------
+  // UPDATE AMOUNT FIELD
+  // -----------------------------
+
+  const amountField =
+    document.getElementById('assortedAmount');
+
+  if (amountField) {
+    amountField.value = amount.toFixed(2);
+  }
+
+
+  // -----------------------------
+  // STORE BILL DATA
+  // -----------------------------
+
+  const billData = {
+    name: name,
+    address: address,
+    phone: phone,
+    quantity: quantity,
+    amount: amount,
+    state: state,
+    invoiceNo: invoiceNo,
+    date: billDate
+  };
 
   localStorage.setItem(
     'assortedCrackersBill',
@@ -708,18 +726,19 @@ const billData = {
   );
 
 
-  // Close popup
+  // -----------------------------
+  // CLOSE POPUP
+  // -----------------------------
 
   closeAssortedBillModal();
 
 
-  /*
-   * For now, just open the existing invoice page.
-   * We will map the data into the invoice in the next step.
-   */
+  // -----------------------------
+  // OPEN INVOICE
+  // -----------------------------
 
   window.open(
-    'ruseeni-crackers-invoice',
+    'ruseeni-crackers-invoice.html',
     '_blank'
   );
 }
