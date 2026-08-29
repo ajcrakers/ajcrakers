@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
-<title>AJ Crackers - Customer View</title>
+<title>AJ CRACKERS - Customer View</title>
 <style>
   body {
     font-family: sans-serif;
@@ -19,17 +19,6 @@ html, body {
   width: 100%;
   box-sizing: border-box;
 }
-
-
-header {
-  width: 100vw;
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-  background-color: #d9534f;
-  color: white;
-  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.2);
-}
 #customerInfo h4 {
    font-size: 28px;
     font-weight: bold;
@@ -41,6 +30,17 @@ header {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     letter-spacing: 1px;
 }
+
+header {
+  width: 100vw;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  background-color: #d9534f;
+  color: white;
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.2);
+}
+
 .header-container {
   max-width: 100%;
   width: 100%;
@@ -198,7 +198,7 @@ header, footer {
     font-size: 14px;
   }
 
-  /* Adjust WhatsApp button margin */
+	/* Adjust WhatsApp button margin */
   .whatsapp-button {
     margin-left: 0 !important;
   }
@@ -339,12 +339,6 @@ td:first-child {
     padding-left: 15px;
     font-size: 18px;
   }
-  .category-tamil {
-    font-size: 14px;
-    font-weight: normal;
-    color: #555;
-    display: block;
-  }
   .category-row {
     transition: all 0.3s ease;
   }
@@ -454,6 +448,18 @@ tr {
   background-position: right center;
   background-size: contain;
 }
+.disclaimer-box {
+  width: 100%;	
+  margin-top: 12px;
+  padding: 10px 14px;
+  background-color: #fff5e6;
+  border-left: 5px solid #ff9900;
+  color: #333;
+  font-size: 0.85rem;
+  line-height: 1.5;
+  border-radius: 4px;
+  box-shadow: 0 0 4px rgba(0, 0, 0, 0.05);
+}
 
 @media (max-width: 600px) {
   .form-container {
@@ -511,13 +517,12 @@ tr {
     padding: 6px;
   }
 
-  table thead th:nth-child(1) { width: 110px; } /* Crackers Name */
-  table thead th:nth-child(2) { width: 100px; } /* Tamil Name */
-  table thead th:nth-child(3) { width: 40px; }  /* Unit */
-  table thead th:nth-child(4),
-  table thead th:nth-child(5) { width: 60px; }  /* Actual & Offer Price */
-  table thead th:nth-child(6) { width: 40px; }  /* Quantity */
-  table thead th:nth-child(7) { width: 60px; }  /* Total */
+  table thead th:nth-child(1) { width: 120px; } /* Crackers Name */
+  table thead th:nth-child(2) { width: 40px; }  /* Unit */
+  table thead th:nth-child(3),
+  table thead th:nth-child(4) { width: 60px; }  /* Actual & Offer Price */
+  table thead th:nth-child(5) { width: 40px; }  /* Quantity */
+  table thead th:nth-child(6) { width: 60px; }  /* Total */
 
   table {
     table-layout: auto !important;
@@ -528,7 +533,288 @@ tr {
     word-break: break-word;
   }
 }
+.transport-note {
+  width: calc(100% - 40px);
+  margin: 25px auto 30px;
+  padding: 10px 18px;
+  box-sizing: border-box;
+  background: #fffaf0;
+  border: 1px solid #f5b642;
+  border-radius: 6px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
+  color: #222;
+  font-family: Arial, sans-serif;
+  font-size: 12px;
+  line-height: 1.4;
+}
 
+.transport-header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding-bottom: 7px;
+  border-bottom: 1px dashed #f5b642;
+}
+
+.transport-icon {
+  width: 38px;
+  height: 38px;
+  min-width: 38px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid #f5b642;
+  border-radius: 50%;
+  background: #fff3d6;
+  font-size: 21px;
+}
+
+.transport-title {
+  font-size: 14px;
+  font-weight: 700;
+  color: #a85408;
+}
+
+.transport-content {
+  width: 100%;
+}
+
+.transport-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  min-height: 30px;
+  padding: 4px 0;
+  border-bottom: 1px solid #e5e5e5;
+}
+
+.transport-row:last-child {
+  border-bottom: none;
+}
+
+.transport-symbol {
+  width: 22px;
+  height: 22px;
+  min-width: 22px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1.5px solid #f59e0b;
+  border-radius: 50%;
+  color: #f59e0b;
+  font-size: 13px;
+  font-weight: 700;
+}
+
+.transport-check {
+  border-color: #22a95a;
+  color: #22a95a;
+}
+
+.transport-row strong {
+  font-weight: 700;
+  color: #111;
+}
+
+@media (max-width: 600px) {
+  .transport-note {
+    width: calc(100% - 20px);
+    padding: 8px 10px;
+    font-size: 11px;
+  }
+
+  .transport-title {
+    font-size: 12px;
+  }
+
+  .transport-row {
+    gap: 8px;
+  }
+}
+
+/* Mobile */
+@media (max-width: 600px) {
+  .transport-note {
+    width: calc(100% - 16px);
+    padding: 8px 10px;
+    font-size: 11px;
+  }
+
+  .transport-icon {
+    width: 34px;
+    height: 34px;
+    font-size: 19px;
+  }
+}
+/* ================================
+   AJ CRACKERS TRANSPORT NOTE
+   ================================ */
+
+.aj-transport-box {
+  width: 96% !important;
+  max-width: 1100px !important;
+  margin: 25px auto 30px !important;
+  padding: 10px 16px !important;
+  box-sizing: border-box !important;
+
+  background: #fffaf0 !important;
+  border: 1px solid #f5b642 !important;
+  border-radius: 6px !important;
+
+  box-shadow: 0 2px 7px rgba(0, 0, 0, 0.10) !important;
+
+  font-family: Arial, Helvetica, sans-serif !important;
+  font-size: 12px !important;
+  line-height: 1.4 !important;
+  color: #222 !important;
+}
+
+/* Heading */
+.aj-transport-heading {
+  display: flex !important;
+  align-items: center !important;
+  gap: 10px !important;
+
+  min-height: 38px !important;
+  padding-bottom: 7px !important;
+
+  border-bottom: 1px dashed #f5b642 !important;
+
+  font-size: 14px !important;
+  font-weight: 700 !important;
+  color: #a85408 !important;
+}
+
+.aj-transport-main-icon {
+  width: 38px !important;
+  height: 38px !important;
+  min-width: 38px !important;
+
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+
+  border: 1px solid #f5b642 !important;
+  border-radius: 50% !important;
+
+  background: #fff3d6 !important;
+
+  font-size: 21px !important;
+}
+
+/* Each note row */
+.aj-transport-item {
+  display: flex !important;
+  align-items: center !important;
+
+  gap: 12px !important;
+  min-height: 30px !important;
+
+  padding: 4px 0 !important;
+
+  border-bottom: 1px solid #e4e4e4 !important;
+
+  font-size: 12px !important;
+  color: #333 !important;
+}
+
+/* Last row */
+.aj-transport-last {
+  border-bottom: none !important;
+}
+
+/* Orange information icon */
+.aj-transport-icon {
+  width: 21px !important;
+  height: 21px !important;
+  min-width: 21px !important;
+
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+
+  border: 1.5px solid #f59e0b !important;
+  border-radius: 50% !important;
+
+  color: #f59e0b !important;
+  font-size: 13px !important;
+  font-weight: 700 !important;
+}
+
+/* Green check icon */
+.aj-transport-check {
+  width: 21px !important;
+  height: 21px !important;
+  min-width: 21px !important;
+
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+
+  border: 1.5px solid #22a95a !important;
+  border-radius: 50% !important;
+
+  color: #22a95a !important;
+  font-size: 13px !important;
+  font-weight: 700 !important;
+}
+
+/* Bold text */
+.aj-transport-item strong {
+  font-weight: 700 !important;
+  color: #111 !important;
+}
+
+/* Mobile */
+@media (max-width: 600px) {
+
+  .aj-transport-box {
+    width: 94% !important;
+    margin: 18px auto 22px !important;
+    padding: 8px 10px !important;
+    font-size: 11px !important;
+  }
+
+  .aj-transport-heading {
+    font-size: 12px !important;
+    gap: 8px !important;
+  }
+
+  .aj-transport-main-icon {
+    width: 32px !important;
+    height: 32px !important;
+    min-width: 32px !important;
+    font-size: 18px !important;
+  }
+
+  .aj-transport-item {
+    gap: 8px !important;
+    min-height: 28px !important;
+    font-size: 11px !important;
+  }
+
+  .aj-transport-icon,
+  .aj-transport-check {
+    width: 19px !important;
+    height: 19px !important;
+    min-width: 19px !important;
+    font-size: 11px !important;
+  }
+}
+  .transport-title {
+    font-size: 12px;
+  }
+
+  .transport-row {
+    grid-template-columns: 28px 1fr;
+    min-height: 28px;
+  }
+
+  .transport-symbol {
+    width: 20px;
+    height: 20px;
+  }
+}
 </style>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.5.25/jspdf.plugin.autotable.min.js"></script>
@@ -539,22 +825,26 @@ tr {
 <header>
   <div class="header-container" role="banner">
     <div class="header-left">
-      <h1>🎇 AJ Crackers</h1>
+      <h1>🎇 AJ CRACKERS </h1>
       <p class="tagline" aria-label="Tagline">Your Trusted Firework Partner</p>
     </div>
 	<!-- Contact Info Bar -->
 	<div class="contact-info-bar">
 	  <span><i class="fas fa-location-dot"></i> Sivakasi</span>
-	  <span><i class="fas fa-phone"></i> +91 99436 81121 </span>
-	  <span><i class="fas fa-envelope"></i> ajcrackers.sivakasi@gmail.com</span>
+	  <span><i class="fas fa-phone"></i> +91 99436 81121</span>
+	  <span><i class="fas fa-envelope"></i> aj.crackers@gmail.com</span>
 	</div>
 
-    <div class="header-right" role="region" aria-live="polite" aria-atomic="true" aria-relevant="text">
-      <p><strong>🎁 Offer: Flat <span class="blink-text" aria-label="Discount percentage">80%</span> Discount Applied</strong></p>
-      <p class="days-left blink-slow" aria-live="polite" aria-atomic="true">
-        🔥 Hurry! Only <span id="daysLeft" aria-label="Days left for offer">53</span> days left for this offer!
-      </p>
-    </div>
+    <!-- Disclaimer Message -->
+<div class="disclaimer-box" role="note" aria-label="Legal disclaimer">
+  <strong>⚠️ Important Legal Notice – Tamil Nadu High Court Order</strong><br>
+  <small>
+    As per the Madurai Bench of the Madras High Court (Order dated 04-09-2025) and the 2018 Supreme Court directions, 
+    <strong>online sale or acceptance of firecracker orders is strictly prohibited</strong>.<br>
+    This website is only for information and price reference.
+  </small>
+</div>
+
   </div>
 </header>
 
@@ -598,15 +888,15 @@ tr {
 
 
 <div class="button-group">
-  <button class="whatsapp-button" onclick="sendOrderToWhatsApp()">Send Order via WhatsApp</button>
+  <button class="whatsapp-button" onclick="sendOrderToWhatsApp()">Enquire via WhatsApp</button>
 </div>
 
   </div>
 <table id="productTable">
 <thead>
   <tr>
-    <th style="width:180px;">Crackers Name</th>
-    <th style="width:160px;">பட்டாசு வகைகள்</th>
+    <th style="width:200px;">Crackers Name</th>
+    <th style="width:200px;">பட்டாசு வகைகள்</th>
     <th style="width:50px;">Unit</th>
     <th style="width:70px;">Actual Price (₹)</th>
     <th style="width:70px;">Offer Price (₹)</th>
@@ -619,88 +909,89 @@ tr {
 </table>
 
 <div class="total-section">
-  <p><strong>Grand Total (After Discount): <span id="grandTotal">0.00</span></strong></p>
+  <p>Products Total: ₹<span id="grandTotal">0.00</span></p>
+  <p><strong>Payable Total: ₹<span id="payableTotal">0.00</span></strong></p>
 </div>
 
 
+
 <div class="button-group" style="display:flex;gap:15px;">
-  <button class="whatsapp-button" style="margin:0;" onclick="sendOrderToWhatsApp()">Send Order via WhatsApp</button>
+  <button class="whatsapp-button" style="margin:0;" onclick="sendOrderToWhatsApp()">Enquire via WhatsApp</button>
    <button class="print-button" onclick="downloadPDF()" title="Download Product List PDF">
   Download Product List PDF
 </button>
 </div>
 
 <p class="footer-note">* Offer is fixed and prices shown are after discount. Prices inclusive of taxes.</p>
+<div class="aj-transport-box">
+  <div class="aj-transport-heading">
+    <span class="aj-transport-main-icon">🚚</span>
+    <span>IMPORTANT – TRANSPORT CHARGES</span>
+  </div>
 
-<footer>
+  <div class="aj-transport-item">
+    <span class="aj-transport-icon">!</span>
+    <span>
+      Transport charges are <strong>NOT</strong> included in the product
+      price or payable total.
+    </span>
+  </div>
+
+  <div class="aj-transport-item">
+    <span class="aj-transport-icon">📦</span>
+    <span>
+      All parcels will be sent on a <strong>TO-PAY</strong> basis through
+      the available transport service.
+    </span>
+  </div>
+
+  <div class="aj-transport-item">
+    <span class="aj-transport-check">✓</span>
+    <span>
+      Transport charges <strong>must be paid directly</strong> by the
+      customer to the transport office / transporter at the time of
+      parcel collection or delivery.
+    </span>
+  </div>
+
+  <div class="aj-transport-item aj-transport-last">
+    <span class="aj-transport-check">✓</span>
+    <span>
+      Transport charges may vary depending on
+      <strong>location, parcel weight, number of boxes, and transport
+      company rates.</strong>
+    </span>
+  </div>
+</div>
+	<footer>
   <div class="footer-container">
-    <p><strong>AJ Crackers</strong> — Your Trusted Firework Partner</p>
-    <p>Contact: +91 99436 81121, +91 63808 72299 , +91 82481 03661 | Email: ajcrackers@gmail.com</p>
-    <p>© 2025 AJ Crackers. All rights reserved.</p>
+    <p><strong>AJ CRACKERS</strong> — Your Trusted Firework Partner</p>
+    <p>Contact: +91 82967 72217, 97914 44235, 99436 81121 | Email: support@ajcrackers.in</p>
     <p class="safety">🔥 Please celebrate responsibly and follow firework safety rules!</p>
   </div>
 </footer>
 
 <script>
-  let currentOffer = 80;
-
-  // Tamil translations for category headings
-  const categoryTamilMap = {
-    "One Sound Crackers": "ஒற்றை சவுண்டு பட்டாசுகள்",
-    "Thunder Crackers": "இடி வெடிகள்",
-    "Deluxe Crackers": "டீலக்ஸ் பட்டாசுகள்",
-    "Bijli Crackers": "பிஜிலி பட்டாசுகள்",
-    "Wala": "வாலா",
-    "Bombs": "பாம்புகள்",
-    "Ropes & Candles": "ரோப்ஸ் & கேண்டில்ஸ்",
-    "Chakkar": "சக்கர்",
-    "Flower Pots": "ஃப்ளவர் பாட்ஸ்",
-    "Rocket": "ராக்கெட்",
-    "Whistling": "விசில் வகைகள்",
-    "Stone": "ஸ்டோன் வகைகள்",
-    "Sky Display": "ஆகாய பட்டாசுகள்",
-    "Repeating Shots": "ரிபீட்டிங் ஷாட்ஸ்",
-    "Fountain Items": "ஃபவுண்டன் பொருட்கள்",
-    "Special Items": "ஸ்பெஷல் பொருட்கள்",
-    "Kids Special": "குழந்தைகள் ஸ்பெஷல்",
-    "Gift Box (Fixed Price.No Discount)": "கிஃப்ட் பாக்ஸ் (நிலையான விலை - தள்ளுபடி இல்லை)",
-    "Sparklers": "மத்தாப்பு வகைகள்"
-  };
-
-  function showDaysLeft() {
-    const offerEndDate = new Date("2025-10-25");
-    const today = new Date();
-    const timeDiff = offerEndDate - today;
-    const daysLeft = Math.ceil(timeDiff / (1000 * 60 * 60 * 24));
-    const msg = daysLeft > 0 ? `${daysLeft}` : '0';
-    document.getElementById("daysLeft").textContent = msg;
-  }
+const TRANSPORT_CHARGE = 850;
 
 function loadProducts() {
   fetch("products.json")
     .then(res => res.json())
     .then(data => {
-      console.log("Loaded products:", data);
-
       try {
-        // Optional: You can keep this if you want to get offer from localStorage
-        const storedOffer = JSON.parse(localStorage.getItem("fireworkOffer")) || { offer: 80 };
+        const storedOffer = JSON.parse(localStorage.getItem("fireworkOffer")) || { offer: 75 };
         currentOffer = storedOffer.offer;
-        // Remove this line if you don't have an element with id 'discountPercent'
-        // document.getElementById("discountPercent").textContent = `${currentOffer}%`;
 
-        // Convert and map products
-        const products = Object.entries(data).map(([name, info]) => ({
-          name,
-          tamil: info.tamilName || "",
-          price: Number(info.price) || 0,
-          offerprice: Number(info.offerprice) || 0,
-          unit: info.unit || "-",
-          category: info.category || "Uncategorized"
-        }));
+     const products = Object.entries(data).map(([name, info]) => ({
+  name,
+  tamilName: info.tamilName || "",
+  price: Number(info.price) || 0,
+  offerprice: Number(info.offerprice) || 0,
+  unit: info.unit || "-",
+  category: info.category || "Uncategorized"
+}));
 
         renderProductTable(products);
-
       } catch (err) {
         console.error("❌ Error processing products:", err);
         document.querySelector("#productTable tbody").innerHTML = `<tr><td colspan="7">Failed to process products.</td></tr>`;
@@ -734,92 +1025,86 @@ function renderProductTable(products) {
     const catRow = document.createElement("tr");
     catRow.classList.add("category-header");
     catRow.style.cursor = "pointer";
-    const catTamil = categoryTamilMap[category] || "";
-    catRow.innerHTML = `<td colspan="7" style="text-align:left; background:#f0f0f0; font-weight:bold;">
-      <span class="cat-arrow">▼</span> ${category}${catTamil ? ` <span class="category-tamil">${catTamil}</span>` : ""}
-    </td>`;
+    catRow.innerHTML = `<td colspan="7" style="text-align:left; background:#f0f0f0; font-weight:bold;">▼ ${category}</td>`;
     tbody.appendChild(catRow);
 
-    items.forEach(item => {
-      const row = document.createElement("tr");
-      row.classList.add("category-row", `category-${index}`);
+items.forEach(item => {
+  const row = document.createElement("tr");
+  row.classList.add("category-row", `category-${index}`);
 
-// Construct image path from product name
-const safeFileName = item.name.replace(/[^a-zA-Z0-9.\s]/g, "");  // Keep spaces and dots
-const imageName = safeFileName + ".jpeg";
-const imagePath = `images/${encodeURIComponent(imageName)}`;
+  const imageName = `${item.category}.jpeg`;
+  const imagePath = `images/${encodeURIComponent(imageName)}`;
 
+  row.innerHTML = `
+    <td class="product-cell">
+      <div class="product-wrapper">
+        <span class="product-name">${item.name}</span>
+      </div>
+    </td>
+    <td>${item.tamilName || ""}</td>
+    <td>${item.unit || "-"}</td>
+    <td>₹${item.price.toFixed(2)}</td>
+    <td>₹${item.offerprice.toFixed(2)}</td>
+    <td>
+      <input type="number"
+             min="0"
+             step="1"
+             placeholder="Qty"
+             onchange="calculateTotals()"
+             oninput="validateIntegerInput(this)"
+             data-name="${item.name}"
+             data-offer="${item.offerprice}" />
+    </td>
+    <td class="item-total">₹0.00</td>
+  `;
 
+  tbody.appendChild(row);
 
-      row.innerHTML = `
-        <td class="product-cell">
-          <div class="product-wrapper">
-            <img 
-  class="product-image"
-  src="${imagePath}" 
-  alt="${item.name}" 
-  onerror="this.style.display='none';"
-  onclick="zoomImage('${imagePath}')"
-/>
+  const image = new Image();
 
-            <span class="product-name">${item.name}</span>
-          </div>
-        </td>
-        <td class="product-name-tamil">${item.tamil || "-"}</td>
-        <td>${item.unit || "-"}</td>
-        <td>₹${item.price.toFixed(2)}</td>
-        <td>₹${item.offerprice.toFixed(2)}</td>
-        <td>
-          <input 
-            type="number" 
-            min="0" 
-            step="1" 
-            placeholder="Qty" 
-            onchange="calculateTotals()" 
-            oninput="validateIntegerInput(this)" 
-            data-name="${item.name}" 
-            data-offer="${item.offerprice}" 
-          />
-        </td>
-        <td class="item-total">₹0.00</td>
-      `;
-      tbody.appendChild(row);
-    });
+  image.onload = function () {
+    const wrapper = row.querySelector(".product-wrapper");
 
-    // Toggle category rows
+    const img = document.createElement("img");
+    img.className = "product-image";
+    img.src = imagePath;
+    img.alt = item.name;
+    img.onclick = () => zoomImage(imagePath);
+
+    wrapper.insertBefore(img, wrapper.firstChild);
+  };
+
+  image.onerror = function () {
+    // Image does not exist - do nothing
+  };
+
+  image.src = imagePath;
+});
+
     catRow.addEventListener("click", () => {
       const catRows = document.querySelectorAll(`.category-${index}`);
-      catRows.forEach(r => {
-        r.style.display = r.style.display === "none" ? "" : "none";
-      });
-      const arrow = catRow.querySelector(".cat-arrow");
-      arrow.textContent = arrow.textContent === "▼" ? "▶" : "▼";
+      catRows.forEach(r => { r.style.display = r.style.display === "none" ? "" : "none"; });
+      catRow.cells[0].textContent = catRow.cells[0].textContent.startsWith("▼")
+        ? catRow.cells[0].textContent.replace("▼", "▶")
+        : catRow.cells[0].textContent.replace("▶", "▼");
     });
   });
 }
+
 function zoomImage(src) {
   const modal = document.getElementById("imageModal");
   const zoomedImg = document.getElementById("zoomedImage");
-
   zoomedImg.src = src;
   modal.style.display = "flex";
 }
 
 function closeModal(event) {
-  // Close modal only if the click target is the modal background, not the image
-  if (event.target.id === "imageModal") {
-    event.target.style.display = "none";
-  }
+  if (event.target.id === "imageModal") event.target.style.display = "none";
 }
-
 
 function validateIntegerInput(input) {
   const value = input.value.trim();
-
-  // If input is empty, do nothing
   if (value === "") return;
-
-  // If decimal or negative number is entered
   if (!/^\d+$/.test(value)) {
     alert("Only whole numbers are allowed. Please enter a valid quantity.");
     input.value = "";
@@ -829,81 +1114,116 @@ function validateIntegerInput(input) {
 
 function calculateTotals() {
   let grandTotal = 0;
+  let selectedCount = 0;
 
   const rows = document.querySelectorAll("#productTable tbody tr");
   rows.forEach(row => {
     const input = row.querySelector("input[type='number']");
     const totalCell = row.querySelector(".item-total");
-
     if (input && totalCell) {
       const quantity = parseInt(input.value) || 0;
       const offerPrice = parseFloat(input.dataset.offer) || 0;
       const itemTotal = quantity * offerPrice;
 
+      if (quantity > 0) selectedCount++;
       totalCell.textContent = `₹${itemTotal.toFixed(2)}`;
       grandTotal += itemTotal;
     }
   });
 
-  // Update grand total display
-  const grandTotalDisplay = document.getElementById("grandTotal");
-  if (grandTotalDisplay) {
-    grandTotalDisplay.textContent = `₹${grandTotal.toFixed(2)}`;
-  }
+  document.getElementById("grandTotal").textContent = grandTotal.toFixed(2);
+
+  const payable = selectedCount > 0 ? grandTotal : 0;
+  document.getElementById("payableTotal").textContent = payable.toFixed(2);
 }
 
-  async function sendOrderToWhatsApp() {
-    const name = document.getElementById("customerName").value.trim();
-    const phone = document.getElementById("customerPhone").value.trim();
-    const address = document.getElementById("customerAddress").value.trim();
+/* -------- Order link helpers (for WhatsApp) -------- */
 
-    if (!name || !address) {
-      alert("Please fill in all required fields: Name, Address.");
-      return;
+function buildOrderPayload(name, phone, address) {
+  const rows = document.querySelectorAll("#productTable tbody tr");
+  const items = [];
+  let productsTotal = 0;
+
+  rows.forEach(row => {
+    const input = row.querySelector("input[type='number']");
+    if (!input) return;
+    const qty = parseInt(input.value);
+    if (!qty || qty <= 0) return;
+
+    const itemName = input.dataset.name;
+    const offerPrice = parseFloat(input.dataset.offer) || 0;
+    const itemTotal = qty * offerPrice;
+
+    items.push({ name: itemName, qty, price: offerPrice, total: itemTotal });
+    productsTotal += itemTotal;
+  });
+
+  return {
+    name,
+    phone,
+    address,
+    date: new Date().toLocaleString(),
+    items,
+    totals: {
+      productsTotal,
+      transport: TRANSPORT_CHARGE,
+      payable: items.length ? (productsTotal + TRANSPORT_CHARGE) : 0
     }
+  };
+}
 
-    const rows = document.querySelectorAll("#productTable tbody tr");
-    let message = `Hi, I'm ${name}, and I'd like to place an order:\n\n`;
+function makeSummaryLink(orderObj) {
+  const basePath = location.origin + location.pathname.replace(/[^/]+$/, '');
+  const json = JSON.stringify(orderObj);
+  const b64 = btoa(unescape(encodeURIComponent(json))); // UTF-8 safe base64
+  return `${basePath}order.html?o=${b64}`;
+}
 
-    let originalTotal = 0;
-    let itemCount = 0;
+/* -------- WhatsApp (top-level, not nested) -------- */
+async function sendOrderToWhatsApp() {
+  const name = document.getElementById("customerName").value.trim();
+  const phone = document.getElementById("customerPhone").value.trim();
+  const address = document.getElementById("customerAddress").value.trim();
 
-    rows.forEach(row => {
-      const input = row.querySelector("input[type='number']");
-      if (!input) return;
-      const qty = parseInt(input.value);
-      const itemName = input.dataset.name;
-      const offerPrice = parseFloat(input.dataset.offer);
-
-      if (qty && qty > 0) {
-        itemCount++;
-        const itemTotal = qty * offerPrice;
-        message += `${itemCount}. ${itemName} × ${qty} = ₹${itemTotal.toFixed(2)}\n`;
-        originalTotal += itemTotal;
-      }
-    });
-
-    if (originalTotal === 0) {
-      alert("Please select at least one product before sending the order.");
-      return;
-    }
-
-    const discount = typeof currentOffer !== 'undefined' ? currentOffer : 0;
-
-    message += `\nGrand Total: ₹${originalTotal.toFixed(2)} (After ${discount}% Discount)`;
-    message += `\n\n📍 Address: ${address}`;
-    if (phone) {
-      message += `\n📞 Phone: ${phone}`;
-    }
-    message += `\n\nThank you`;
-
-  
-    // Open WhatsApp with encoded text message
-    const encodedMessage = encodeURIComponent(message);
-    const whatsappURL = `https://wa.me/9943681121?text=${encodedMessage}`;
-    window.open(whatsappURL, "_blank");
+  if (!name || !address) {
+    alert("Please fill in all required fields: Name, Address.");
+    return;
   }
 
+  const order = buildOrderPayload(name, phone, address);
+  if (!order.items.length) {
+    alert("Please select at least one product before sending the order.");
+    return;
+  }
+const summaryLink = await makeSummaryLink(order);
+
+let i = 0;
+let message = `Hi, I'm ${name}, and I'd like to place an order:\n\n`;
+
+order.items.forEach(it => {
+  i++;
+  message += `${i}. ${it.name} × ${it.qty} = ₹${it.total.toFixed(2)}\n`;
+});
+
+message += `\nPayable Total: ₹${order.totals.productsTotal.toFixed(2)}`;
+
+message += `\n\n📍 Address: ${order.address}`;
+
+if (order.phone) {
+  message += `\n📞 Phone: ${order.phone}`;
+}
+
+ message += `\n\nView full summary: ${summaryLink}`;
+message += `\n\n🚚 Transport charges are not included in the payable total. Parcels will be sent on a TO-PAY basis, and transport charges must be paid directly to the transporter/transport office. Charges may vary based on location, parcel weight, number of boxes, and transport rates.`;
+
+const encodedMessage = encodeURIComponent(message);
+const whatsappURL =
+  `https://wa.me/918296772217?text=${encodedMessage}`;
+
+window.open(whatsappURL, "_blank");
+}
+
+/* -------- PDF export -------- */
 function downloadPDF() {
   const { jsPDF } = window.jspdf;
   const doc = new jsPDF();
@@ -912,19 +1232,16 @@ function downloadPDF() {
   doc.text("AJ Crackers - Product List", 14, 20);
 
   const rows = [];
-  const headers = [["S.No", "Product Name", "Offer Price (Rs.)"]]; // Added S.No column
+  const headers = [["S.No", "Product Name", "Offer Price (Rs.)"]];
 
   const productRows = document.querySelectorAll("#productTable tbody tr");
-
   let index = 1;
   productRows.forEach(row => {
     const input = row.querySelector("input[type='number']");
     if (!input) return;
-
     const name = input.dataset.name;
     const price = parseFloat(input.dataset.offer);
-    rows.push([index + 1, name, "Rs." + Number(price).toFixed(2)]);
- // Add index to each row
+    rows.push([index, name, "Rs." + Number(price).toFixed(2)]);
     index++;
   });
 
@@ -945,14 +1262,11 @@ function downloadPDF() {
   doc.save("AJ_Crackers_Product_List.pdf");
 }
 
-
-
-
-  window.onload = function () {
-    showDaysLeft();
-    loadProducts();
-  };
- 
+/* -------- onload (single place) -------- */
+window.onload = function () {
+  loadProducts();
+  calculateTotals();
+};
 </script>
 <!-- Image Zoom Modal -->
 <div id="imageModal" class="image-modal" onclick="closeModal(event)">
