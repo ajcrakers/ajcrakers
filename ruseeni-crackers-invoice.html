@@ -19,12 +19,7 @@
       min-height: 100vh;
     }
 
-    .invoice-wrapper {
-      width: 794px;
-      background: #fff;
-      border: 1.5px solid #222;
-      print-color-adjust: exact;
-    }
+   
 .customer-name {
   font-size: 12px;
   font-weight: 700;
@@ -228,7 +223,7 @@
     .item-rows td { height: 28px; }
 
     /* ── SUMMARY SECTION ── */
-   .summary-grid {
+.summary-grid {
   display: grid;
   grid-template-columns: 1fr 180px;
   width: 100%;
@@ -236,6 +231,15 @@
   border-top: 1.5px solid #222;
   margin-top: 0;
   position: relative;
+
+  /* Force summary to start below the table */
+  grid-column: 1 / -1;
+}
+.invoice-wrapper > .summary-grid {
+  width: 100%;
+  display: grid;
+  grid-column: 1 / -1;
+  clear: both;
 }
     .hsn-block {
       padding: 12px 20px;
