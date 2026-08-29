@@ -206,6 +206,27 @@
     gap: 0;
   }
 }
+.modal-field select {
+  width: 100%;
+  box-sizing: border-box;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 14px;
+  background: #fff;
+  cursor: pointer;
+}
+.modal-row {
+  display: flex;
+  gap: 15px;
+  align-items: flex-start;
+}
+
+.modal-row .modal-field {
+  flex: 1;
+  min-width: 0;
+}
+
   </style>
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
@@ -329,16 +350,36 @@
       </div>
 
 
-    <div class="modal-field">
-  <label for="assortedState">State *</label>
+   <div class="modal-row">
 
-  <select id="assortedState">
-    <option value="">Select State</option>
-    <option value="Tamil Nadu">Tamil Nadu</option>
-    <option value="Other State">Other State</option>
-  </select>
+  <div class="modal-field">
+    <label for="assortedInvoiceNo">Invoice No.</label>
+
+    <input
+      type="text"
+      id="assortedInvoiceNo"
+      placeholder="Enter invoice number">
+  </div>
+
+  <div class="modal-field">
+    <label for="assortedDate">Date</label>
+
+    <input
+      type="date"
+      id="assortedDate">
+  </div>
+
+  <div class="modal-field">
+    <label for="assortedState">State</label>
+
+    <select id="assortedState">
+      <option value="">Select State</option>
+      <option value="Tamil Nadu">Tamil Nadu</option>
+      <option value="Other State">Other State</option>
+    </select>
+  </div>
+
 </div>
-
     </div>
 
 
@@ -435,6 +476,26 @@
             categoryIndex++;
           });
         }
+		function setAssortedBillDefaultDate() {
+  const dateInput = document.getElementById('assortedDate');
+
+  if (!dateInput.value) {
+    const today = new Date();
+    const year = today.getFullYear();
+    const month = String(today.getMonth() + 1).padStart(2, '0');
+    const day = String(today.getDate()).padStart(2, '0');
+
+    dateInput.value = `${year}-${month}-${day}`;
+  }
+}
+function openAssortedBillModal() {
+  const modal = document.getElementById('assortedBillModal');
+
+  modal.classList.add('show');
+
+  setAssortedBillDefaultDate();
+}
+
 function toTitleCase(str) {
   return str.replace(/\w\S*/g, function (txt) {
     return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();
@@ -580,7 +641,11 @@ function generateAssortedBill() {
 
   const phone =
     document.getElementById('assortedPhone').value.trim();
+const invoiceNo =
+  document.getElementById('assortedInvoiceNo').value.trim();
 
+const billDate =
+  document.getElementById('assortedDate').value;
 if (isNaN(amount) || amount <= 0) {
   alert('Please enter a valid amount.');
   return;
@@ -643,7 +708,9 @@ const billData = {
   phone: phone,
   amount: amount,
   quantity: quantity,
-  state: state
+  state: state,
+  invoiceNo: invoiceNo,
+  date: billDate
 };
 
 
