@@ -76,7 +76,25 @@
       }
     }
 	/* Assorted Crackers Bill Modal */
+.product-search-container {
+    margin: 20px 0;
+}
 
+#productSearch {
+    width: 100%;
+    max-width: 450px;
+    padding: 12px 16px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    font-size: 16px;
+    box-sizing: border-box;
+    outline: none;
+}
+
+#productSearch:focus {
+    border-color: #8e44ad;
+    box-shadow: 0 0 4px rgba(142, 68, 173, 0.25);
+}
 .modal-overlay {
   display: none;
   position: fixed;
@@ -253,7 +271,14 @@
             onkeypress="return /[0-9]/.test(event.key) && this.value.length < 10">
         </div>
       </div>
-
+<div class="product-search-container">
+    <input
+        type="text"
+        id="productSearch"
+        placeholder="🔍 Search product name..."
+        oninput="searchProducts()"
+    >
+</div>
       <table id="productTable">
         <thead>
           <tr>
@@ -498,7 +523,29 @@ function toTitleCase(str) {
     return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();
   });
 }
+function searchProducts() {
+    const searchText =
+        document.getElementById('productSearch').value
+            .trim()
+            .toLowerCase();
 
+    document.querySelectorAll('#productTable tbody tr').forEach(row => {
+
+        // Keep category headers visible/hidden based on matching products
+        if (row.classList.contains('category-header')) {
+            return;
+        }
+
+        const productName =
+            row.cells[0]?.textContent.trim().toLowerCase() || '';
+
+        if (productName.includes(searchText)) {
+            row.style.display = '';
+        } else {
+            row.style.display = 'none';
+        }
+    });
+}
         function validateIntegerInput(input) {
           if (input.value && !/^\d+$/.test(input.value)) {
             alert('Please enter a whole number.');
