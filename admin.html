@@ -643,11 +643,6 @@ const invoiceNo =
 
 const billDate =
   document.getElementById('assortedDate').value;
-if (isNaN(amount) || amount <= 0) {
-  alert('Please enter a valid amount.');
-  return;
-}
-
   const quantity =
     parseInt(
       document.getElementById('assortedQuantity').value,
