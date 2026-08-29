@@ -304,15 +304,7 @@
 
 
       <div class="modal-row">
-<div class="modal-field">
-  <label for="assortedAmount">Amount (₹2,000 × Quantity)</label>
 
-  <input
-    type="number"
-    id="assortedAmount"
-    value="0"
-    readonly>
-</div>
 
         <div class="modal-field">
   <label for="assortedQuantity">Quantity *</label>
@@ -325,20 +317,27 @@
     placeholder="Enter quantity"
     oninput="calculateAssortedAmount()">
 </div>
+<div class="modal-field">
+  <label for="assortedAmount">Amount (₹2,000 × Quantity)</label>
 
+  <input
+    type="number"
+    id="assortedAmount"
+    value="0"
+    readonly>
+</div>
       </div>
 
 
-      <div class="modal-field">
-        <label for="assortedGst">GST Percentage *</label>
+    <div class="modal-field">
+  <label for="assortedState">State *</label>
 
-        <input
-          type="number"
-          id="assortedGst"
-          min="0"
-          step="0.01"
-          placeholder="Example: 18">
-      </div>
+  <select id="assortedState">
+    <option value="">Select State</option>
+    <option value="Tamil Nadu">Tamil Nadu</option>
+    <option value="Other State">Other State</option>
+  </select>
+</div>
 
     </div>
 
@@ -593,10 +592,7 @@ if (isNaN(amount) || amount <= 0) {
       10
     );
 
-  const gstPercentage =
-    parseFloat(
-      document.getElementById('assortedGst').value
-    );
+
 
 
   // Validate name
@@ -630,25 +626,25 @@ if (isNaN(amount) || amount <= 0) {
     return;
   }
 
+const state =
+  document.getElementById('assortedState').value;
 
-  // Validate GST
-
-  if (isNaN(gstPercentage) || gstPercentage < 0) {
-    alert('Please enter a valid GST percentage.');
-    return;
-  }
+if (!state) {
+  alert('Please select the state.');
+  return;
+}
 
 
   // Store the information temporarily
 
-  const billData = {
-    name: name,
-    address: address,
-    phone: phone,
-    amount: amount,
-    quantity: quantity,
-    gstPercentage: gstPercentage
-  };
+const billData = {
+  name: name,
+  address: address,
+  phone: phone,
+  amount: amount,
+  quantity: quantity,
+  state: state
+};
 
 
   localStorage.setItem(
