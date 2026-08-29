@@ -350,10 +350,10 @@
       </div>
 
 
-   <div class="modal-row">
+  <div class="modal-row">
 
   <div class="modal-field">
-    <label for="assortedInvoiceNo">Invoice No.</label>
+    <label for="assortedInvoiceNo">Invoice No. *</label>
 
     <input
       type="text"
@@ -370,7 +370,7 @@
   </div>
 
   <div class="modal-field">
-    <label for="assortedState">State</label>
+    <label for="assortedState">State *</label>
 
     <select id="assortedState">
       <option value="">Select State</option>
@@ -380,9 +380,6 @@
   </div>
 
 </div>
-    </div>
-
-
     <div class="modal-footer">
 
       <button
@@ -693,6 +690,11 @@ if (isNaN(amount) || amount <= 0) {
 
 const state =
   document.getElementById('assortedState').value;
+
+if (!invoiceNo) {
+  alert('Please enter the invoice number.');
+  return;
+}
 
 if (!state) {
   alert('Please select the state.');
