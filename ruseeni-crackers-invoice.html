@@ -508,190 +508,208 @@
 <script>
 document.addEventListener('DOMContentLoaded', function () {
 
-  const storedData = localStorage.getItem('assortedCrackersBill');
+    // ==========================================
+    // GET BILL DATA FROM ADMIN PAGE
+    // ==========================================
 
-  if (!storedData) {
-    return;
-  }
+    const storedData = localStorage.getItem('assortedCrackersBill');
 
-  const billData = JSON.parse(storedData);
-
-  const name = billData.name || '';
-  const address = billData.address || '';
-  const phone = billData.phone || '';
-  const rate = 2000;
-const itemValue = quantity * rate;
-  const state = billData.state || '';
-  const invoiceNo = billData.invoiceNo || '';
-  const billDate = billData.date || '';
-
-  // -----------------------------
-  // CUSTOMER INFORMATION
-  // -----------------------------
-
-  document.getElementById('customerName').textContent = name;
-
-  document.getElementById('customerAddress').textContent = address;
-
-  document.getElementById('customerPhone').textContent =
-    phone ? `Phone: ${phone}` : '';
-
-
-  // -----------------------------
-  // INVOICE INFORMATION
-  // -----------------------------
-
-  document.getElementById('invoiceNumber').textContent = invoiceNo;
-
-  if (billDate) {
-    const parts = billDate.split('-');
-
-    if (parts.length === 3) {
-      document.getElementById('invoiceDate').textContent =
-        `${parts[2]}-${parts[1]}-${parts[0]}`;
+    if (!storedData) {
+        console.log('No assorted cracker bill data found.');
+        return;
     }
-  }
+
+    const billData = JSON.parse(storedData);
+
+    console.log('Invoice Bill Data:', billData);
 
 
-  // -----------------------------
-  // PRODUCT INFORMATION
-  // -----------------------------
-const quantity = Number(billData.quantity) || 0;
-const rate = 2000;
-const itemValue = quantity * rate;
+    // ==========================================
+    // CUSTOMER INFORMATION
+    // ==========================================
 
-document.getElementById('invoiceQuantity').textContent = quantity;
+    const name = billData.name || '';
+    const address = billData.address || '';
+    const phone = billData.phone || '';
 
-document.getElementById('invoiceRate').textContent =
-    `Rs. ${rate.toLocaleString('en-IN', {
-        minimumFractionDigits: 2,
-        maximumFractionDigits: 2
-    })}`;
+    document.getElementById('customerName').textContent = name;
 
-document.getElementById('invoiceValue').textContent =
-    `Rs. ${itemValue.toLocaleString('en-IN', {
-        minimumFractionDigits: 2,
-        maximumFractionDigits: 2
-    })}`;
-const subTotal = itemValue;
-let sgst = 0;
-let cgst = 0;
-let igst = 0;
+    document.getElementById('customerAddress').textContent = address;
 
-if (billData.state === 'Tamil Nadu') {
-    sgst = subTotal * 0.09;
-    cgst = subTotal * 0.09;
-} else {
-    igst = subTotal * 0.18;
-}
-const roundOff = 0;
-const totalAmount = subTotal + sgst + cgst + igst + roundOff;
-document.getElementById('subTotal').textContent =
-    `Rs. ${subTotal.toLocaleString('en-IN', {
-        minimumFractionDigits: 2,
-        maximumFractionDigits: 2
-    })}`;
-	document.getElementById('sgstAmount').textContent =
-    `Rs. ${sgst.toLocaleString('en-IN', {
-        minimumFractionDigits: 2,
-        maximumFractionDigits: 2
-    })}`;
-	document.getElementById('cgstAmount').textContent =
-    `Rs. ${cgst.toLocaleString('en-IN', {
-        minimumFractionDigits: 2,
-        maximumFractionDigits: 2
-    })}`;
-	document.getElementById('igstAmount').textContent =
-    `Rs. ${igst.toLocaleString('en-IN', {
-        minimumFractionDigits: 2,
-        maximumFractionDigits: 2
-    })}`;
-	document.getElementById('roundOff').textContent =
-    `Rs. ${roundOff.toLocaleString('en-IN', {
-        minimumFractionDigits: 2,
-        maximumFractionDigits: 2
-    })}`;
-	document.getElementById('totalAmount').textContent =
-    `Rs. ${totalAmount.toLocaleString('en-IN', {
-        minimumFractionDigits: 2,
-        maximumFractionDigits: 2
-    })}`;
-	
-  // -----------------------------
-  // GST CALCULATION
-  // -----------------------------
-
-  /*
-   * GST rate
-   * Change this value if your applicable GST rate is different.
-   */
-  const GST_RATE = 18;
-
-  const subTotal = amount;
-
-  let sgst = 0;
-  let cgst = 0;
-  let igst = 0;
-
-  if (state === 'Tamil Nadu') {
-
-    sgst = subTotal * (GST_RATE / 2) / 100;
-    cgst = subTotal * (GST_RATE / 2) / 100;
-
-    document.getElementById('sgstLabel').textContent =
-      `SGST ${GST_RATE / 2}%`;
-
-    document.getElementById('cgstLabel').textContent =
-      `CGST ${GST_RATE / 2}%`;
-
-    document.getElementById('igstLabel').textContent =
-      'IGST';
-
-  } else if (state === 'Other State') {
-
-    igst = subTotal * GST_RATE / 100;
-
-    document.getElementById('sgstLabel').textContent =
-      'SGST';
-
-    document.getElementById('cgstLabel').textContent =
-      'CGST';
-
-    document.getElementById('igstLabel').textContent =
-      `IGST ${GST_RATE}%`;
-  }
+    document.getElementById('customerPhone').textContent =
+        phone ? `Phone: ${phone}` : '';
 
 
-  // -----------------------------
-  // TAX SUMMARY
-  // -----------------------------
+    // ==========================================
+    // INVOICE INFORMATION
+    // ==========================================
 
-  const totalBeforeRoundOff =
-    subTotal + sgst + cgst + igst;
+    const invoiceNo = billData.invoiceNo || '';
+    const billDate = billData.date || '';
 
-  const roundedTotal =
-    Math.round(totalBeforeRoundOff);
+    document.getElementById('invoiceNumber').textContent = invoiceNo;
 
-  const roundOff =
-    roundedTotal - totalBeforeRoundOff;
+    if (billDate) {
 
-  document.getElementById('subTotal').textContent =
-    `Rs. ${subTotal.toFixed(2)}`;
+        const parts = billDate.split('-');
 
-  document.getElementById('sgstAmount').textContent =
-    `Rs. ${sgst.toFixed(2)}`;
+        if (parts.length === 3) {
 
-  document.getElementById('cgstAmount').textContent =
-    `Rs. ${cgst.toFixed(2)}`;
+            document.getElementById('invoiceDate').textContent =
+                `${parts[2]}-${parts[1]}-${parts[0]}`;
 
-  document.getElementById('igstAmount').textContent =
-    `Rs. ${igst.toFixed(2)}`;
+        } else {
 
-  document.getElementById('roundOff').textContent =
-    `Rs. ${roundOff.toFixed(2)}`;
+            document.getElementById('invoiceDate').textContent =
+                billDate;
 
-  document.getElementById('totalAmount').textContent =
-    `Rs. ${roundedTotal.toFixed(2)}`;
+        }
+    }
+
+
+    // ==========================================
+    // PRODUCT CALCULATION
+    // ==========================================
+
+    const quantity = Number(billData.quantity) || 0;
+
+    const rate = 2000;
+
+    const itemValue = quantity * rate;
+
+
+    // ==========================================
+    // PRODUCT TABLE
+    // ==========================================
+
+    document.getElementById('invoiceQuantity').textContent =
+        quantity;
+
+    document.getElementById('invoiceRate').textContent =
+        `₹ ${rate.toLocaleString('en-IN', {
+            minimumFractionDigits: 2,
+            maximumFractionDigits: 2
+        })}`;
+
+    document.getElementById('invoiceValue').textContent =
+        `₹ ${itemValue.toLocaleString('en-IN', {
+            minimumFractionDigits: 2,
+            maximumFractionDigits: 2
+        })}`;
+
+
+    // ==========================================
+    // GST CALCULATION
+    // ==========================================
+
+    const GST_RATE = 18;
+
+    const subTotal = itemValue;
+
+    let sgst = 0;
+    let cgst = 0;
+    let igst = 0;
+
+    const state = billData.state || '';
+
+
+    if (state === 'Tamil Nadu') {
+
+        // Tamil Nadu = SGST 9% + CGST 9%
+
+        sgst = subTotal * 0.09;
+
+        cgst = subTotal * 0.09;
+
+        document.getElementById('sgstLabel').textContent =
+            'SGST 9%';
+
+        document.getElementById('cgstLabel').textContent =
+            'CGST 9%';
+
+        document.getElementById('igstLabel').textContent =
+            'IGST';
+
+    } else {
+
+        // Other State = IGST 18%
+
+        igst = subTotal * 0.18;
+
+        document.getElementById('sgstLabel').textContent =
+            'SGST';
+
+        document.getElementById('cgstLabel').textContent =
+            'CGST';
+
+        document.getElementById('igstLabel').textContent =
+            'IGST 18%';
+    }
+
+
+    // ==========================================
+    // TOTAL CALCULATION
+    // ==========================================
+
+    const totalBeforeRoundOff =
+        subTotal + sgst + cgst + igst;
+
+    const roundedTotal =
+        Math.round(totalBeforeRoundOff);
+
+    const roundOff =
+        roundedTotal - totalBeforeRoundOff;
+
+
+    // ==========================================
+    // SUMMARY GRID
+    // ==========================================
+
+    document.getElementById('subTotal').textContent =
+        `₹ ${subTotal.toLocaleString('en-IN', {
+            minimumFractionDigits: 2,
+            maximumFractionDigits: 2
+        })}`;
+
+    document.getElementById('sgstAmount').textContent =
+        `₹ ${sgst.toLocaleString('en-IN', {
+            minimumFractionDigits: 2,
+            maximumFractionDigits: 2
+        })}`;
+
+    document.getElementById('cgstAmount').textContent =
+        `₹ ${cgst.toLocaleString('en-IN', {
+            minimumFractionDigits: 2,
+            maximumFractionDigits: 2
+        })}`;
+
+    document.getElementById('igstAmount').textContent =
+        `₹ ${igst.toLocaleString('en-IN', {
+            minimumFractionDigits: 2,
+            maximumFractionDigits: 2
+        })}`;
+
+    document.getElementById('roundOff').textContent =
+        `₹ ${roundOff.toLocaleString('en-IN', {
+            minimumFractionDigits: 2,
+            maximumFractionDigits: 2
+        })}`;
+
+    document.getElementById('totalAmount').textContent =
+        `₹ ${roundedTotal.toLocaleString('en-IN', {
+            minimumFractionDigits: 2,
+            maximumFractionDigits: 2
+        })}`;
+
+
+    console.log('Quantity:', quantity);
+    console.log('Rate:', rate);
+    console.log('Item Value:', itemValue);
+    console.log('Sub Total:', subTotal);
+    console.log('SGST:', sgst);
+    console.log('CGST:', cgst);
+    console.log('IGST:', igst);
+    console.log('Total:', roundedTotal);
 
 });
 </script>
