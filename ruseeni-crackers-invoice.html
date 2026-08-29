@@ -25,7 +25,26 @@
       border: 1.5px solid #222;
       print-color-adjust: exact;
     }
+.customer-name {
+  font-size: 12px;
+  font-weight: 700;
+  color: #111;
+  margin-top: 6px;
+}
 
+.customer-address {
+  font-size: 11px;
+  color: #333;
+  line-height: 1.5;
+  margin-top: 3px;
+  white-space: pre-line;
+}
+
+.customer-phone {
+  font-size: 10.5px;
+  color: #555;
+  margin-top: 3px;
+}
     /* ── TOP STRIP ── */
     .top-strip {
       background: #b91c1c;
@@ -338,26 +357,28 @@
         <div class="meta-label">Party's GSTIN No.</div>
         <div class="meta-line"></div>
       </div>
-      <div class="meta-block">
-        <div class="meta-label">Invoice No.</div>
-        <div class="meta-line"></div>
-      </div>
+     <div class="meta-block">
+  <div class="meta-label">Invoice No.</div>
+  <div class="meta-line" id="invoiceNumber"></div>
+</div>
     </div>
   </div>
 
   <!-- TO / DATE -->
   <div class="to-block">
-    <div class="to-left">
-      <div class="to-label">To / M/s.</div>
-      <div class="to-line"></div>
-      <div class="to-line"></div>
-      <div class="to-line"></div>
-    </div>
-    <div class="to-right">
-      <div class="date-label">Date :</div>
-      <div class="date-line"></div>
-    </div>
-  </div>
+<div class="to-left">
+  <div class="to-label">To / M/s.</div>
+
+  <div id="customerName" class="customer-name"></div>
+
+  <div id="customerAddress" class="customer-address"></div>
+
+  <div id="customerPhone" class="customer-phone"></div>
+</div>
+   <div class="to-right">
+  <div class="date-label">Date :</div>
+  <div class="date-line" id="invoiceDate"></div>
+</div>
 
   <!-- LINE ITEMS TABLE -->
   <table>
@@ -372,10 +393,19 @@
     </thead>
     <tbody>
       <!-- Item 1 header -->
-      <tr>
-        <td class="sno">1.</td>
-        <td class="particulars" colspan="4"><strong>Assorted Crackers</strong></td>
-      </tr>
+     <tr>
+  <td class="sno">1.</td>
+
+  <td class="particulars">
+    <strong>Assorted Crackers</strong>
+  </td>
+
+  <td id="invoiceQuantity" style="text-align:center;"></td>
+
+  <td id="invoiceRate" style="text-align:right;"></td>
+
+  <td id="invoiceValue" style="text-align:right;"></td>
+</tr>
       <!-- Blank item rows -->
       <tr class="item-rows"><td></td><td></td><td></td><td></td><td></td></tr>
       <tr class="item-rows"><td></td><td></td><td></td><td></td><td></td></tr>
@@ -396,31 +426,38 @@
       <div class="hsn-badge">HSN CODE : 3604</div>
     </div>
     <div class="tax-summary">
-      <div class="tax-row">
-        <span class="tax-name">Sub Total</span>
-        <span class="tax-val">&nbsp;</span>
-      </div>
-      <div class="tax-row">
-        <span class="tax-name">SGST &nbsp; %</span>
-        <span class="tax-val">&nbsp;</span>
-      </div>
-      <div class="tax-row">
-        <span class="tax-name">CGST &nbsp; %</span>
-        <span class="tax-val">&nbsp;</span>
-      </div>
-      <div class="tax-row">
-        <span class="tax-name">IGST &nbsp; %</span>
-        <span class="tax-val">&nbsp;</span>
-      </div>
-      <div class="tax-row">
-        <span class="tax-name">Round Off</span>
-        <span class="tax-val">&nbsp;</span>
-      </div>
-      <div class="tax-row total-row">
-        <span class="tax-name">Total Amount</span>
-        <span class="tax-val">&nbsp;</span>
-      </div>
-    </div>
+
+  <div class="tax-row">
+    <span class="tax-name">Sub Total</span>
+    <span class="tax-val" id="subTotal"></span>
+  </div>
+
+  <div class="tax-row">
+    <span class="tax-name" id="sgstLabel">SGST</span>
+    <span class="tax-val" id="sgstAmount"></span>
+  </div>
+
+  <div class="tax-row">
+    <span class="tax-name" id="cgstLabel">CGST</span>
+    <span class="tax-val" id="cgstAmount"></span>
+  </div>
+
+  <div class="tax-row">
+    <span class="tax-name" id="igstLabel">IGST</span>
+    <span class="tax-val" id="igstAmount"></span>
+  </div>
+
+  <div class="tax-row">
+    <span class="tax-name">Round Off</span>
+    <span class="tax-val" id="roundOff"></span>
+  </div>
+
+  <div class="tax-row total-row">
+    <span class="tax-name">Total Amount</span>
+    <span class="tax-val" id="totalAmount"></span>
+  </div>
+
+</div>
   </div>
 
   <!-- RUPEES IN WORDS -->
@@ -443,5 +480,145 @@
   </div>
 
 </div>
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+
+  const storedData = localStorage.getItem('assortedCrackersBill');
+
+  if (!storedData) {
+    return;
+  }
+
+  const billData = JSON.parse(storedData);
+
+  const name = billData.name || '';
+  const address = billData.address || '';
+  const phone = billData.phone || '';
+  const quantity = Number(billData.quantity) || 0;
+  const amount = Number(billData.amount) || 0;
+  const state = billData.state || '';
+  const invoiceNo = billData.invoiceNo || '';
+  const billDate = billData.date || '';
+
+  // -----------------------------
+  // CUSTOMER INFORMATION
+  // -----------------------------
+
+  document.getElementById('customerName').textContent = name;
+
+  document.getElementById('customerAddress').textContent = address;
+
+  document.getElementById('customerPhone').textContent =
+    phone ? `Phone: ${phone}` : '';
+
+
+  // -----------------------------
+  // INVOICE INFORMATION
+  // -----------------------------
+
+  document.getElementById('invoiceNumber').textContent = invoiceNo;
+
+  if (billDate) {
+    const parts = billDate.split('-');
+
+    if (parts.length === 3) {
+      document.getElementById('invoiceDate').textContent =
+        `${parts[2]}-${parts[1]}-${parts[0]}`;
+    }
+  }
+
+
+  // -----------------------------
+  // PRODUCT INFORMATION
+  // -----------------------------
+
+  document.getElementById('invoiceQuantity').textContent =
+    quantity;
+
+  document.getElementById('invoiceRate').textContent =
+    'Rs. 2,000.00';
+
+  document.getElementById('invoiceValue').textContent =
+    amount.toFixed(2);
+
+
+  // -----------------------------
+  // GST CALCULATION
+  // -----------------------------
+
+  /*
+   * GST rate
+   * Change this value if your applicable GST rate is different.
+   */
+  const GST_RATE = 18;
+
+  const subTotal = amount;
+
+  let sgst = 0;
+  let cgst = 0;
+  let igst = 0;
+
+  if (state === 'Tamil Nadu') {
+
+    sgst = subTotal * (GST_RATE / 2) / 100;
+    cgst = subTotal * (GST_RATE / 2) / 100;
+
+    document.getElementById('sgstLabel').textContent =
+      `SGST ${GST_RATE / 2}%`;
+
+    document.getElementById('cgstLabel').textContent =
+      `CGST ${GST_RATE / 2}%`;
+
+    document.getElementById('igstLabel').textContent =
+      'IGST';
+
+  } else if (state === 'Other State') {
+
+    igst = subTotal * GST_RATE / 100;
+
+    document.getElementById('sgstLabel').textContent =
+      'SGST';
+
+    document.getElementById('cgstLabel').textContent =
+      'CGST';
+
+    document.getElementById('igstLabel').textContent =
+      `IGST ${GST_RATE}%`;
+  }
+
+
+  // -----------------------------
+  // TAX SUMMARY
+  // -----------------------------
+
+  const totalBeforeRoundOff =
+    subTotal + sgst + cgst + igst;
+
+  const roundedTotal =
+    Math.round(totalBeforeRoundOff);
+
+  const roundOff =
+    roundedTotal - totalBeforeRoundOff;
+
+  document.getElementById('subTotal').textContent =
+    `Rs. ${subTotal.toFixed(2)}`;
+
+  document.getElementById('sgstAmount').textContent =
+    `Rs. ${sgst.toFixed(2)}`;
+
+  document.getElementById('cgstAmount').textContent =
+    `Rs. ${cgst.toFixed(2)}`;
+
+  document.getElementById('igstAmount').textContent =
+    `Rs. ${igst.toFixed(2)}`;
+
+  document.getElementById('roundOff').textContent =
+    `Rs. ${roundOff.toFixed(2)}`;
+
+  document.getElementById('totalAmount').textContent =
+    `Rs. ${roundedTotal.toFixed(2)}`;
+
+});
+</script>
 </body>
 </html>
