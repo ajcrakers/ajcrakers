@@ -375,8 +375,8 @@
     "price": 350,
     "category": "Digital Flower Pots",
     "unit": "Box",
-    "offerprice": "100",
-    "tamilName": "எஃப்.பி. சூப்பர் டீலக்ஸ் (5 பீஸ்)"
+    "offerprice": "70",
+    "tamilName": "எஃப்.பி. சூப்பர் டீலக்ஸ் (2 பீஸ்)"
   },
   "Color Koti Delux": {
     "price": 1475,
@@ -490,19 +490,19 @@
     "offerprice": "40",
     "tamilName": "1 சோட்டா ஃபேன்சி"
   },
-  "2 Chota Fancy": {
+  "2 Fancy": {
     "price": 400,
     "category": "Sky Display",
     "unit": "Box",
     "offerprice": "80",
-    "tamilName": "2 சோட்டா ஃபேன்சி"
+    "tamilName": "2 ஃபேன்சி"
   },
-  "2 Chota Fancy 3pcs": {
+  "2 Fancy 3pcs": {
     "price": 1050,
     "category": "Sky Display",
     "unit": "Box",
     "offerprice": "210",
-    "tamilName": "2 சோட்டா ஃபேன்சி 3 பீஸ்"
+    "tamilName": "2 ஃபேன்சி 3 பீஸ்"
   },
   "3½ Fancy": {
     "price": 1225,
@@ -861,6 +861,13 @@
     "offerprice": 140,
     "tamilName": "ஸ்பெக்ட்ரம் (5 பீஸ்)"
   },
+"Orion": {
+  "price": 800,
+  "category": "Magic Night Fountains",
+  "unit": "Pack",
+  "offerprice": 160,
+  "tamilName": "ஓரியன்"
+},
   "Lucky (5 Pcs)": {
     "price": 650,
     "category": "Magic Night Fountains",
