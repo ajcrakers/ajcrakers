@@ -736,7 +736,7 @@ function calculateAssortedAmount() {
 }
 
 function generateAssortedBill() {
-console.log('generateAssortedBill CALLED');
+
   const name =
     document.getElementById('assortedName').value.trim();
 
@@ -839,19 +839,19 @@ console.log('generateAssortedBill CALLED');
 
   closeAssortedBillModal();
 
-console.log('BILL DATA BEING SENT:', billData);
-console.log(
-  'LOCAL STORAGE:',
-  localStorage.getItem('assortedCrackersBill')
-);
+
   // -----------------------------
   // OPEN INVOICE
   // -----------------------------
 
-  window.open(
+  const invoiceWindow = window.open(
     'ruseeni-crackers-invoice.html',
     '_blank'
   );
+
+  if (!invoiceWindow) {
+    alert('Please allow pop-ups to generate the invoice PDF.');
+  }
 }
         function printBill() {
           const name = document.getElementById('customerName').value.trim();
