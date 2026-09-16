@@ -517,6 +517,73 @@
 
 </div>
 <script>
+  function numberToWords(num) {
+    num = Math.floor(Number(num));
+
+    if (num === 0) {
+        return 'Zero';
+    }
+
+    const ones = [
+        '', 'One', 'Two', 'Three', 'Four', 'Five',
+        'Six', 'Seven', 'Eight', 'Nine', 'Ten',
+        'Eleven', 'Twelve', 'Thirteen', 'Fourteen',
+        'Fifteen', 'Sixteen', 'Seventeen', 'Eighteen', 'Nineteen'
+    ];
+
+    const tens = [
+        '', '', 'Twenty', 'Thirty', 'Forty',
+        'Fifty', 'Sixty', 'Seventy', 'Eighty', 'Ninety'
+    ];
+
+    function convertLessThanThousand(n) {
+        let words = '';
+
+        if (n >= 100) {
+            words += ones[Math.floor(n / 100)] + ' Hundred';
+            n = n % 100;
+
+            if (n > 0) {
+                words += ' and ';
+            }
+        }
+
+        if (n >= 20) {
+            words += tens[Math.floor(n / 10)];
+
+            if (n % 10 !== 0) {
+                words += ' ' + ones[n % 10];
+            }
+        } else if (n > 0) {
+            words += ones[n];
+        }
+
+        return words;
+    }
+
+    let words = '';
+
+    if (num >= 10000000) {
+        words += convertLessThanThousand(Math.floor(num / 10000000)) + ' Crore ';
+        num %= 10000000;
+    }
+
+    if (num >= 100000) {
+        words += convertLessThanThousand(Math.floor(num / 100000)) + ' Lakh ';
+        num %= 100000;
+    }
+
+    if (num >= 1000) {
+        words += convertLessThanThousand(Math.floor(num / 1000)) + ' Thousand ';
+        num %= 1000;
+    }
+
+    if (num > 0) {
+        words += convertLessThanThousand(num);
+    }
+
+    return words.trim();
+}
 document.addEventListener('DOMContentLoaded', function () {
 
     // ==========================================
