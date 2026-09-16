@@ -736,592 +736,122 @@ function calculateAssortedAmount() {
 }
 
 function generateAssortedBill() {
+console.log('generateAssortedBill CALLED');
+  const name =
+    document.getElementById('assortedName').value.trim();
 
-    // ==========================================
-    // GET FORM VALUES
-    // ==========================================
+  const address =
+    document.getElementById('assortedAddress').value.trim();
 
-    const name = document.getElementById('assortedName').value.trim();
-    const address = document.getElementById('assortedAddress').value.trim();
-    const phone = document.getElementById('assortedPhone').value.trim();
+  const phone =
+    document.getElementById('assortedPhone').value.trim();
 
-    const quantity = parseInt(
-        document.getElementById('assortedQuantity').value,
-        10
+  const quantity =
+    parseInt(
+      document.getElementById('assortedQuantity').value,
+      10
     ) || 0;
 
-    const invoiceNo =
-        document.getElementById('assortedInvoiceNo').value.trim();
+  const invoiceNo =
+    document.getElementById('assortedInvoiceNo').value.trim();
 
-    const billDate =
-        document.getElementById('assortedDate').value;
+  const billDate =
+    document.getElementById('assortedDate').value;
 
-    const state =
-        document.getElementById('assortedState').value;
+  const state =
+    document.getElementById('assortedState').value;
 
 
-    // ==========================================
-    // VALIDATION
-    // ==========================================
+  // -----------------------------
+  // VALIDATION
+  // -----------------------------
 
-    if (!name) {
-        alert('Please enter customer name.');
-        return;
-    }
+  if (!name) {
+    alert('Please enter customer name.');
+    return;
+  }
 
-    if (!address) {
-        alert('Please enter customer address.');
-        return;
-    }
+  if (!address) {
+    alert('Please enter customer address.');
+    return;
+  }
 
-    if (!quantity || quantity <= 0) {
-        alert('Please enter a valid quantity.');
-        return;
-    }
+  if (!quantity || quantity <= 0) {
+    alert('Please enter a valid quantity.');
+    return;
+  }
 
-    if (!invoiceNo) {
-        alert('Please enter invoice number.');
-        return;
-    }
+  if (!invoiceNo) {
+    alert('Please enter invoice number.');
+    return;
+  }
 
-    if (!state) {
-        alert('Please select the state.');
-        return;
-    }
+  if (!state) {
+    alert('Please select the state.');
+    return;
+  }
 
 
-    // ==========================================
-    // CALCULATIONS
-    // ==========================================
+  // -----------------------------
+  // CALCULATE AMOUNT
+  // -----------------------------
 
-    const rate = 2000;
+  const rate = 2000;
+  const amount = quantity * rate;
 
-    const subTotal = quantity * rate;
 
-    let sgst = 0;
-    let cgst = 0;
-    let igst = 0;
+  // -----------------------------
+  // UPDATE AMOUNT FIELD
+  // -----------------------------
 
-    if (state === 'Tamil Nadu') {
+  const amountField =
+    document.getElementById('assortedAmount');
 
-        sgst = subTotal * 0.09;
-        cgst = subTotal * 0.09;
+  if (amountField) {
+    amountField.value = amount.toFixed(2);
+  }
 
-    } else {
 
-        igst = subTotal * 0.18;
+  // -----------------------------
+  // STORE BILL DATA
+  // -----------------------------
 
-    }
+  const billData = {
+    name: name,
+    address: address,
+    phone: phone,
+    quantity: quantity,
+    amount: amount,
+    state: state,
+    invoiceNo: invoiceNo,
+    date: billDate
+  };
 
-    const totalBeforeRoundOff =
-        subTotal + sgst + cgst + igst;
+  localStorage.setItem(
+    'assortedCrackersBill',
+    JSON.stringify(billData)
+  );
 
-    const roundedTotal =
-        Math.round(totalBeforeRoundOff);
 
-    const roundOff =
-        roundedTotal - totalBeforeRoundOff;
+  // -----------------------------
+  // CLOSE POPUP
+  // -----------------------------
 
+  closeAssortedBillModal();
 
-    // ==========================================
-    // CREATE PDF
-    // ==========================================
+console.log('BILL DATA BEING SENT:', billData);
+console.log(
+  'LOCAL STORAGE:',
+  localStorage.getItem('assortedCrackersBill')
+);
+  // -----------------------------
+  // OPEN INVOICE
+  // -----------------------------
 
-    const { jsPDF } = window.jspdf;
-
-    const doc = new jsPDF({
-        orientation: 'portrait',
-        unit: 'mm',
-        format: 'a4'
-    });
-
-
-    // ==========================================
-    // COLORS
-    // ==========================================
-
-    const red = [185, 28, 28];
-    const dark = [28, 28, 28];
-    const grey = [100, 100, 100];
-
-
-    // ==========================================
-    // TOP STRIP
-    // ==========================================
-
-    doc.setFillColor(...red);
-    doc.rect(0, 0, 210, 15, 'F');
-
-    doc.setTextColor(255, 255, 255);
-    doc.setFontSize(9);
-
-    doc.text(
-        'ஶ்ரீ வீருசின்னம்மாள் துணை',
-        105,
-        9,
-        { align: 'center' }
-    );
-
-
-    // ==========================================
-    // HEADER
-    // ==========================================
-
-    doc.setTextColor(...dark);
-
-    doc.setFontSize(8);
-    doc.setFont(undefined, 'bold');
-
-    doc.text(
-        'GSTIN : 33ABHFR5605A1ZO',
-        15,
-        24
-    );
-
-    // TAX INVOICE badge
-
-    doc.setFillColor(...red);
-    doc.rect(145, 19, 50, 8, 'F');
-
-    doc.setTextColor(255, 255, 255);
-    doc.setFontSize(8);
-
-    doc.text(
-        'TAX INVOICE',
-        170,
-        24.5,
-        { align: 'center' }
-    );
-
-
-    // ==========================================
-    // COMPANY NAME
-    // ==========================================
-
-    doc.setTextColor(...red);
-    doc.setFontSize(24);
-    doc.setFont(undefined, 'bold');
-
-    doc.text(
-        'Ruseeni Crackers',
-        15,
-        39
-    );
-
-    doc.setTextColor(...dark);
-    doc.setFontSize(9);
-
-    doc.text(
-        'Suppliers of Fancy Fireworks & Crackers',
-        15,
-        46
-    );
-
-    doc.setFontSize(8);
-    doc.setTextColor(...grey);
-
-    doc.text(
-        '3/339-5, Peranaickenpatti to Tayilpatti Road,',
-        15,
-        52
-    );
-
-    doc.setFont(undefined, 'bold');
-
-    doc.text(
-        'TAYILPATTI - 626 128. Virudhunagar Dist. Tamilnadu.',
-        15,
-        57
-    );
-
-
-    // ==========================================
-    // INVOICE DETAILS
-    // ==========================================
-
-    doc.setFont(undefined, 'normal');
-    doc.setTextColor(...grey);
-    doc.setFontSize(8);
-
-    doc.text(
-        'Invoice No.',
-        150,
-        38
-    );
-
-    doc.setTextColor(...dark);
-    doc.setFont(undefined, 'bold');
-
-    doc.text(
-        invoiceNo,
-        150,
-        44
-    );
-
-    doc.setTextColor(...grey);
-    doc.setFont(undefined, 'normal');
-
-    doc.text(
-        'Date',
-        150,
-        51
-    );
-
-    doc.setTextColor(...dark);
-    doc.setFont(undefined, 'bold');
-
-    let formattedDate = billDate;
-
-    if (billDate) {
-        const parts = billDate.split('-');
-
-        if (parts.length === 3) {
-            formattedDate =
-                `${parts[2]}-${parts[1]}-${parts[0]}`;
-        }
-    }
-
-    doc.text(
-        formattedDate,
-        150,
-        57
-    );
-
-
-    // ==========================================
-    // CUSTOMER SECTION
-    // ==========================================
-
-    doc.setDrawColor(30, 30, 30);
-
-    doc.line(15, 65, 195, 65);
-
-    doc.setTextColor(...grey);
-    doc.setFontSize(8);
-    doc.setFont(undefined, 'bold');
-
-    doc.text(
-        'TO / M/s.',
-        15,
-        72
-    );
-
-    doc.setTextColor(...dark);
-    doc.setFontSize(11);
-
-    doc.text(
-        name,
-        15,
-        80
-    );
-
-    doc.setFont(undefined, 'normal');
-    doc.setFontSize(9);
-
-    const addressLines =
-        doc.splitTextToSize(address, 120);
-
-    doc.text(
-        addressLines,
-        15,
-        87
-    );
-
-    if (phone) {
-
-        doc.setTextColor(...grey);
-
-        doc.text(
-            `Phone: ${phone}`,
-            15,
-            87 + (addressLines.length * 5)
-        );
-    }
-
-
-    // ==========================================
-    // PRODUCT TABLE
-    // ==========================================
-
-    const tableStartY =
-        100 + Math.max(0, addressLines.length - 1) * 5;
-
-    doc.autoTable({
-
-        startY: tableStartY,
-
-        head: [[
-            'S.No.',
-            'PARTICULARS',
-            'QUANTITY',
-            'RATE PER',
-            'VALUE'
-        ]],
-
-        body: [[
-            '1.',
-            'Assorted Crackers',
-            quantity.toString(),
-            `Rs. ${rate.toFixed(2)}`,
-            `Rs. ${subTotal.toFixed(2)}`
-        ]],
-
-        theme: 'grid',
-
-        styles: {
-            fontSize: 9,
-            cellPadding: 4,
-            textColor: [30, 30, 30],
-            lineColor: [180, 180, 180],
-            lineWidth: 0.2
-        },
-
-        headStyles: {
-            fillColor: dark,
-            textColor: [255, 255, 255],
-            fontStyle: 'bold',
-            halign: 'center'
-        },
-
-        columnStyles: {
-            0: {
-                halign: 'center',
-                cellWidth: 18
-            },
-            1: {
-                halign: 'left',
-                cellWidth: 75
-            },
-            2: {
-                halign: 'center',
-                cellWidth: 25
-            },
-            3: {
-                halign: 'right',
-                cellWidth: 30
-            },
-            4: {
-                halign: 'right',
-                cellWidth: 32
-            }
-        }
-    });
-
-
-    // ==========================================
-    // SUMMARY
-    // ==========================================
-
-    let summaryY =
-        doc.lastAutoTable.finalY + 10;
-
-    // HSN
-
-    doc.setDrawColor(30, 30, 30);
-
-    doc.rect(
-        15,
-        summaryY,
-        75,
-        12
-    );
-
-    doc.setFontSize(9);
-    doc.setFont(undefined, 'bold');
-
-    doc.text(
-        'HSN CODE : 3604',
-        20,
-        summaryY + 8
-    );
-
-
-    // Summary values
-
-    const summaryX = 125;
-    const valueX = 190;
-
-    doc.setFont(undefined, 'normal');
-    doc.setFontSize(9);
-
-    doc.text(
-        'Sub Total',
-        summaryX,
-        summaryY + 6
-    );
-
-    doc.text(
-        `Rs. ${subTotal.toFixed(2)}`,
-        valueX,
-        summaryY + 6,
-        { align: 'right' }
-    );
-
-    let currentY = summaryY + 13;
-
-    if (state === 'Tamil Nadu') {
-
-        doc.text(
-            'SGST 9%',
-            summaryX,
-            currentY + 6
-        );
-
-        doc.text(
-            `Rs. ${sgst.toFixed(2)}`,
-            valueX,
-            currentY + 6,
-            { align: 'right' }
-        );
-
-        currentY += 8;
-
-        doc.text(
-            'CGST 9%',
-            summaryX,
-            currentY + 6
-        );
-
-        doc.text(
-            `Rs. ${cgst.toFixed(2)}`,
-            valueX,
-            currentY + 6,
-            { align: 'right' }
-        );
-
-        currentY += 8;
-
-    } else {
-
-        doc.text(
-            'IGST 18%',
-            summaryX,
-            currentY + 6
-        );
-
-        doc.text(
-            `Rs. ${igst.toFixed(2)}`,
-            valueX,
-            currentY + 6,
-            { align: 'right' }
-        );
-
-        currentY += 8;
-    }
-
-
-    // Round off
-
-    doc.text(
-        'Round Off',
-        summaryX,
-        currentY + 6
-    );
-
-    doc.text(
-        `Rs. ${roundOff.toFixed(2)}`,
-        valueX,
-        currentY + 6,
-        { align: 'right' }
-    );
-
-    currentY += 10;
-
-
-    // ==========================================
-    // TOTAL
-    // ==========================================
-
-    doc.setFillColor(...dark);
-
-    doc.rect(
-        120,
-        currentY,
-        75,
-        12,
-        'F'
-    );
-
-    doc.setTextColor(255, 255, 255);
-    doc.setFont(undefined, 'bold');
-    doc.setFontSize(10);
-
-    doc.text(
-        'Total Amount',
-        125,
-        currentY + 8
-    );
-
-    doc.text(
-        `Rs. ${roundedTotal.toFixed(2)}`,
-        190,
-        currentY + 8,
-        { align: 'right' }
-    );
-
-
-    // ==========================================
-    // FOOTER
-    // ==========================================
-
-    const footerY =
-        currentY + 30;
-
-    doc.setTextColor(...dark);
-    doc.setFontSize(9);
-
-    doc.setFont(undefined, 'bold');
-
-    doc.text(
-        'Subject to Sattur Jurisdiction Only',
-        15,
-        footerY
-    );
-
-    doc.setFont(undefined, 'normal');
-
-    doc.text(
-        'E.&O.E.',
-        15,
-        footerY + 6
-    );
-
-    doc.setTextColor(...red);
-    doc.setFont(undefined, 'bold');
-
-    doc.text(
-        'For Ruseeni Crackers',
-        150,
-        footerY
-    );
-
-    doc.setTextColor(...grey);
-    doc.setFontSize(8);
-
-    doc.text(
-        'PARTNER',
-        165,
-        footerY + 10
-    );
-
-
-    // ==========================================
-    // DOWNLOAD PDF
-    // ==========================================
-
-    const safeName =
-        name.replace(/[^a-zA-Z0-9]/g, '_');
-
-    doc.save(
-        `Assorted_Crackers_Bill_${safeName}_${invoiceNo}.pdf`
-    );
-
-
-    // ==========================================
-    // CLOSE MODAL
-    // ==========================================
-
-    closeAssortedBillModal();
+  window.open(
+    'ruseeni-crackers-invoice.html',
+    '_blank'
+  );
 }
         function printBill() {
           const name = document.getElementById('customerName').value.trim();
