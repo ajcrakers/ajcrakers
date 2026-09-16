@@ -426,7 +426,25 @@
       id="assortedInvoiceNo"
       placeholder="Enter invoice number">
   </div>
+<div class="form-group">
+    <label for="assortedTransporter">Transporter *</label>
+    <input
+        type="text"
+        id="assortedTransporter"
+        placeholder="Enter transporter"
+        required
+    >
+</div>
 
+<div class="form-group">
+    <label for="assortedGstin">GSTIN / URP *</label>
+    <input
+        type="text"
+        id="assortedGstin"
+        placeholder="Enter GSTIN / URP"
+        required
+    >
+</div>
   <div class="modal-field">
     <label for="assortedDate">Date</label>
 
@@ -754,7 +772,11 @@ function generateAssortedBill() {
 
   const invoiceNo =
     document.getElementById('assortedInvoiceNo').value.trim();
+const transporter =
+    document.getElementById('assortedTransporter').value.trim();
 
+const gstin =
+    document.getElementById('assortedGstin').value.trim();
   const billDate =
     document.getElementById('assortedDate').value;
 
@@ -770,7 +792,15 @@ function generateAssortedBill() {
     alert('Please enter customer name.');
     return;
   }
+if (!transporter) {
+    alert('Please enter transporter.');
+    return;
+}
 
+if (!gstin) {
+    alert('Please enter GSTIN / URP.');
+    return;
+}
   if (!address) {
     alert('Please enter customer address.');
     return;
@@ -816,7 +846,7 @@ function generateAssortedBill() {
   // STORE BILL DATA
   // -----------------------------
 
-  const billData = {
+const billData = {
     name: name,
     address: address,
     phone: phone,
@@ -824,8 +854,10 @@ function generateAssortedBill() {
     amount: amount,
     state: state,
     invoiceNo: invoiceNo,
-    date: billDate
-  };
+    date: billDate,
+    transporter: transporter,
+    gstin: gstin
+};
 
   localStorage.setItem(
     'assortedCrackersBill',
