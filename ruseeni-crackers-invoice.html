@@ -347,6 +347,9 @@
       .invoice-wrapper { border: none; width: 100%; }
     }
   </style>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+
 </head>
 <body>
 <div class="invoice-wrapper">
@@ -710,8 +713,126 @@ document.addEventListener('DOMContentLoaded', function () {
     console.log('CGST:', cgst);
     console.log('IGST:', igst);
     console.log('Total:', roundedTotal);
-
+ // Generate PDF after the invoice is completely populated
+    generateInvoicePDF();
 });
+async function generateInvoicePDF() {
+
+    try {
+
+        // Wait until fonts are loaded
+        if (document.fonts && document.fonts.ready) {
+            await document.fonts.ready;
+        }
+
+        // Allow the browser to finish rendering
+        await new Promise(resolve => {
+            requestAnimationFrame(() => {
+                requestAnimationFrame(resolve);
+            });
+        });
+
+        const invoice = document.querySelector('.invoice-wrapper');
+
+        if (!invoice) {
+            console.error('Invoice wrapper not found.');
+            return;
+        }
+
+        // Capture the EXISTING invoice exactly as rendered
+        const canvas = await html2canvas(invoice, {
+            scale: 2,
+            useCORS: true,
+            allowTaint: false,
+            backgroundColor: '#ffffff',
+            width: invoice.scrollWidth,
+            height: invoice.scrollHeight,
+            windowWidth: invoice.scrollWidth,
+            scrollX: 0,
+            scrollY: 0
+        });
+
+        const imgData = canvas.toDataURL('image/png');
+
+        const { jsPDF } = window.jspdf;
+
+        const pdf = new jsPDF({
+            orientation: 'portrait',
+            unit: 'mm',
+            format: 'a4',
+            compress: true
+        });
+
+        const pageWidth = pdf.internal.pageSize.getWidth();
+        const pageHeight = pdf.internal.pageSize.getHeight();
+
+        const imgWidth = pageWidth;
+        const imgHeight =
+            (canvas.height * imgWidth) / canvas.width;
+
+        let heightLeft = imgHeight;
+        let position = 0;
+
+        // First page
+        pdf.addImage(
+            imgData,
+            'PNG',
+            0,
+            position,
+            imgWidth,
+            imgHeight
+        );
+
+        heightLeft -= pageHeight;
+
+        // Additional pages if required
+        while (heightLeft > 0) {
+
+            position = heightLeft - imgHeight;
+
+            pdf.addPage();
+
+            pdf.addImage(
+                imgData,
+                'PNG',
+                0,
+                position,
+                imgWidth,
+                imgHeight
+            );
+
+            heightLeft -= pageHeight;
+        }
+
+        // Use invoice number for filename
+        const invoiceNo =
+            document.getElementById('invoiceNumber')?.textContent.trim()
+            || 'Invoice';
+
+        const safeInvoiceNo =
+            invoiceNo.replace(/[^a-zA-Z0-9_-]/g, '_');
+
+        pdf.save(
+            `Ruseeni_Crackers_Invoice_${safeInvoiceNo}.pdf`
+        );
+
+        // Close invoice tab after download starts
+        setTimeout(() => {
+            window.close();
+        }, 700);
+
+    } catch (error) {
+
+        console.error(
+            'Error generating invoice PDF:',
+            error
+        );
+
+        alert(
+            'Unable to generate the invoice PDF. Please try again.'
+        );
+    }
+}
 </script>
 </body>
 </html>
