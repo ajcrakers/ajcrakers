@@ -516,20 +516,19 @@ document.addEventListener('DOMContentLoaded', function () {
     // ==========================================
 
     const storedData = localStorage.getItem('assortedCrackersBill');
-const transporter = billData.transporter || '';
-const gstin = billData.gstin || '';
-  document.getElementById('transporter').textContent = transporter;
-document.getElementById('partyGstin').textContent = gstin;
     if (!storedData) {
         console.log('No assorted cracker bill data found.');
         return;
     }
-
     const billData = JSON.parse(storedData);
 
     console.log('Invoice Bill Data:', billData);
 
-
+const transporter = billData.transporter || '';
+const gstin = billData.gstin || '';
+  document.getElementById('transporter').textContent = transporter;
+document.getElementById('partyGstin').textContent = gstin;
+  
     // ==========================================
     // CUSTOMER INFORMATION
     // ==========================================
