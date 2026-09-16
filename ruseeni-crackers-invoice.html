@@ -376,14 +376,14 @@
       </div>
     </div>
     <div class="header-right">
+     <div class="meta-block">
+    <div class="meta-label">Transporter</div>
+    <div class="meta-line" id="transporter"></div>
+</div>
       <div class="meta-block">
-        <div class="meta-label">Transporter</div>
-        <div class="meta-line"></div>
-      </div>
-      <div class="meta-block">
-        <div class="meta-label">GSTIN/ URP</div>
-        <div class="meta-line"></div>
-      </div>
+    <div class="meta-label">Party's GSTIN No.</div>
+    <div class="meta-line" id="partyGstin"></div>
+</div>
      <div class="meta-block">
   <div class="meta-label">Invoice No.</div>
   <div class="meta-line" id="invoiceNumber"></div>
@@ -516,7 +516,10 @@ document.addEventListener('DOMContentLoaded', function () {
     // ==========================================
 
     const storedData = localStorage.getItem('assortedCrackersBill');
-
+const transporter = billData.transporter || '';
+const gstin = billData.gstin || '';
+  document.getElementById('transporter').textContent = transporter;
+document.getElementById('partyGstin').textContent = gstin;
     if (!storedData) {
         console.log('No assorted cracker bill data found.');
         return;
