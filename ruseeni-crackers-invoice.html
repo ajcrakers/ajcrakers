@@ -300,7 +300,11 @@
       padding: 10px 20px;
       font-size: 11px;
     }
-    .rupees-label { font-weight: 600; color: #333; }
+    .rupees-label { font-weight: 600; color: #333;line-height: 1.5; }
+    #totalAmountWords {
+  font-weight: 600;
+  color: #000;
+}
     .rupees-line {
       border-bottom: 1px solid #aaa;
       margin: 6px 0 4px;
@@ -490,11 +494,14 @@
   </div>
 
   <!-- RUPEES IN WORDS -->
-  <div class="rupees-block">
-    <span class="rupees-label">Rupees </span>
-    <div class="rupees-line"></div>
-    <div class="rupees-only">……………………………………………………………………………only</div>
+<!-- RUPEES IN WORDS -->
+<div class="rupees-block">
+  <div class="rupees-label">
+    Rupees <span id="totalAmountWords"></span> Only
   </div>
+
+  <div class="rupees-line"></div>
+</div>
 
   <!-- FOOTER -->
   <div class="footer-grid">
@@ -706,7 +713,8 @@ document.getElementById('partyGstin').textContent = gstin;
             minimumFractionDigits: 2,
             maximumFractionDigits: 2
         })}`;
-
+document.getElementById('totalAmountWords').textContent =
+    numberToWords(roundedTotal);
 
     console.log('Quantity:', quantity);
     console.log('Rate:', rate);
