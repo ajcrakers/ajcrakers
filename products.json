@@ -4,14 +4,16 @@
     "category": "One Sound Crackers",
     "unit": "Pkt",
     "offerprice": "6",
-    "tamilName": "குருவி"
+    "tamilName": "குருவி",
+     "imagename": "Kuruvi"
   },
   "31/2 Lakshmi": {
     "price": 55,
     "category": "One Sound Crackers",
     "unit": "Pkt",
     "offerprice": "11",
-    "tamilName": "3½ லட்சுமி"
+    "tamilName": "3½ லட்சுமி",
+    "imagename": "312_Lakshmi"
   },
   "4 Lakshmi": {
     "price": 75,
