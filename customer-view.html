@@ -808,7 +808,7 @@ async function sendOrderToWhatsApp() {
   message += `\n\n🧾 View Order: ${summaryLink}`;
   message += `\n\n🚚 Transport charges are not included in the payable total. Parcels will be sent on a TO-PAY basis, and transport charges must be paid directly to the transporter/transport office. Charges may vary based on location, parcel weight, number of boxes, and transport rates.`;
 
-  window.open(`https://wa.me/918296772217?text=${encodeURIComponent(message)}`, "_blank");
+  window.open(`https://wa.me/919943681121?text=${encodeURIComponent(message)}`, "_blank");
 }
 
 /* ---------- PDF export ---------- */
@@ -820,7 +820,7 @@ function downloadPDF() {
   doc.setFontSize(18);
   doc.text("AJ CRACKERS - Product List", 14, 20);
   doc.setFontSize(10);
-  doc.text("Sivakasi | +91 82967 72217", 14, 27);
+  doc.text("Sivakasi | +91 99436 81121", 14, 27);
 
   const rows = products.map((p, i) => [i + 1, p.name, p.category, p.unit, "Rs." + p.price.toFixed(2), "Rs." + p.offerprice.toFixed(2)]);
   doc.autoTable({
