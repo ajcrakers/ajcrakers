@@ -72,7 +72,7 @@
   "2 Fancy 3pcs": {"price": 1050, "category": "Sky Display", "unit": "Box", "offerprice": "210", "tamilName": "2 ஃபேன்சி 3 பீஸ்", "imagename": "2_Chota_Fancy_3pcs"},
   "3½ Fancy": {"price": 1225, "category": "Sky Display", "unit": "Box", "offerprice": "245", "tamilName": "3½ ஃபேன்சி", "imagename": "3_Fancy"},
   "4 Fancy": {"price": 1400, "category": "Sky Display", "unit": "Box", "offerprice": "280", "tamilName": "4 ஃபேன்சி", "imagename": "4_Fancy"},
-  "5\" Double Piece": {"price": 4000, "category": "Sky Display", "unit": "Box", "offerprice": "800", "tamilName": "5 இன்ச் டபுள் பீஸ்", "imagename": "Super_Hero"},
+  "5\" Double Piece": {"price": 4000, "category": "Sky Display", "unit": "Box", "offerprice": "800", "tamilName": "5 இன்ச் டபுள் பீஸ்", "imagename": "5_Double_Piece"},
   "Niagara Falls": {"price": 1750, "category": "Sky Display", "unit": "Box", "offerprice": "350", "tamilName": "நயாகரா ஃபால்ஸ்", "imagename": "Niagara_Falls"},
   "7 colors": {"price": 350, "category": "Sky Display", "unit": "Box", "offerprice": "70", "tamilName": "7 கலர்ஸ்", "imagename": "7_Colors"},
   "Penta (5 Pcs)": {"price": 750, "category": "Sky Display", "unit": "Box", "offerprice": "150", "tamilName": "பென்டா (5 பீஸ்)", "imagename": "Penta_(5_Pcs)"},
