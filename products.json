@@ -626,7 +626,14 @@
     "imagename": "Ultra_Pencil"
 
   },
-
+"Cocktail Spinner": {
+  "price": 510,
+  "category": "Round Chakra",
+  "unit": "Box",
+  "offerprice": "105",
+  "tamilName": "காக்டெயில் ஸ்பின்னர்",
+  "imagename": "Chakkar_Special"
+},
   "Chakkar Big": {
 
     "price": 250,
@@ -1089,7 +1096,14 @@
     "imagename": "1_Chota_Fancy"
 
   },
-
+"5\" Double Piece": {
+  "price": 4800,
+  "category": "Magic Night Fountains",
+  "unit": "Box",
+  "offerprice": "960",
+  "tamilName": "5 இன்ச் டபுள் பீஸ்",
+  "imagename": "Super_Hero"
+},
   "2 Fancy": {
 
     "price": 400,
@@ -1400,6 +1414,38 @@
     "imagename": "240_shot_(limited_stocks_only)"
 
   },
+"Golden Duck": {
+  "price": 1080,
+  "category": "Magic Night Fountains",
+  "unit": "Box",
+  "offerprice": "216",
+  "tamilName": "கோல்டன் டக்",
+  "imagename": "Super_Hero"
+},
+"Elephant": {
+  "price": 1080,
+  "category": "Magic Night Fountains",
+  "unit": "Box",
+  "offerprice": "216",
+  "tamilName": "எலிஃபண்ட்",
+  "imagename": "Super_Hero"
+},
+"Golden Butterfly": {
+  "price": 1080,
+  "category": "Magic Night Fountains",
+  "unit": "Box",
+  "offerprice": "216",
+  "tamilName": "கோல்டன் பட்டர்ஃபிளை",
+  "imagename": "Super_Hero"
+},
+"Lemon Tree": {
+  "price": 960,
+  "category": "Magic Night Fountains",
+  "unit": "Box",
+  "offerprice": "192",
+  "tamilName": "லெமன் ட்ரீ",
+  "imagename": "Super_Hero"
+},
 
   "Ashrafi Koti Delux": {
 
