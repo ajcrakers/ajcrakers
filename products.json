@@ -592,21 +592,7 @@
 
   },
 
-  "candy crush": {
-
-    "price": 500,
-
-    "category": "Ropes & Candles",
-
-    "unit": "Box",
-
-    "offerprice": "100",
-
-    "tamilName": "கேண்டி க்ரஷ்",
-
-    "imagename": "Candy_crush"
-
-  },
+ 
 
   "lorax": {
 
@@ -624,21 +610,6 @@
 
   },
 
-  "Roman Candle": {
-
-    "price": 550,
-
-    "category": "Ropes & Candles",
-
-    "unit": "Box",
-
-    "offerprice": "110",
-
-    "tamilName": "ரோமன் கேண்டில்",
-
-    "imagename": "Roman_Candle"
-
-  },
 
   "Ultra Pencil": {
 
@@ -687,7 +658,21 @@
     "imagename": "Chakkar_Special"
 
   },
+ "Cocktail Spinner": {
 
+    "price": 425,
+
+    "category": "Round Chakra",
+
+    "unit": "Box",
+
+    "offerprice": "85",
+
+    "tamilName": "காக்டெயில் ஸ்பின்னர்",
+
+    "imagename": "Chakkar_Special"
+
+  },
   "Chakkar deluxe": {
 
     "price": 600,
@@ -848,21 +833,6 @@
 
   },
 
-  "F.P. Super deluxe (2 pcs)": {
-
-    "price": 500,
-
-    "category": "Digital Flower Pots",
-
-    "unit": "Box",
-
-    "offerprice": "100",
-
-    "tamilName": "எஃப்.பி. சூப்பர் டீலக்ஸ் (2 பீஸ்)",
-
-    "imagename": "F.P._Super_deluxe_(5_pcs)"
-
-  },
 
   "Color Koti Delux": {
 
@@ -1183,7 +1153,14 @@
     "imagename": "4_Fancy"
 
   },
-
+"5\" Double Piece": {
+  "price": 4000,
+  "category": "Sky Display",
+  "unit": "Box",
+  "offerprice": "800",
+  "tamilName": "5 இன்ச் டபுள் பீஸ்",
+  "imagename": "Super_Hero"
+}
   "Niagara Falls": {
 
     "price": 1750,
@@ -1439,39 +1416,6 @@
     "imagename": "Ashrafi_Koti_Delux"
 
   },
-
-  "Gaiety": {
-
-    "price": 600,
-
-    "category": "Magic Night Fountains",
-
-    "unit": "Box",
-
-    "offerprice": "120",
-
-    "tamilName": "கெயிட்டி",
-
-    "imagename": "Gaiety"
-
-  },
-
-  "Miracle Pots": {
-
-    "price": 800,
-
-    "category": "Magic Night Fountains",
-
-    "unit": "Box",
-
-    "offerprice": "160",
-
-    "tamilName": "மிராக்கிள் பாட்ஸ்",
-
-    "imagename": "Miracle_Pots"
-
-  },
-
   "Social Media 5Pcs": {
 
     "price": 900,
@@ -1503,6 +1447,38 @@
     "imagename": "Super_Hero"
 
   },
+ "Golden Duck": {
+  "price": 900,
+  "category": "Magic Night Fountains",
+  "unit": "Box",
+  "offerprice": "180",
+  "tamilName": "கோல்டன் டக்",
+  "imagename": "Super_Hero"
+},
+"Elephant": {
+  "price": 900,
+  "category": "Magic Night Fountains",
+  "unit": "Box",
+  "offerprice": "180",
+  "tamilName": "எலிஃபண்ட்",
+  "imagename": "Super_Hero"
+},
+"Golden Butterfly": {
+  "price": 900,
+  "category": "Magic Night Fountains",
+  "unit": "Box",
+  "offerprice": "180",
+  "tamilName": "கோல்டன் பட்டர்ஃபிளை",
+  "imagename": "Super_Hero"
+},
+"Lemon Tree": {
+  "price": 800,
+  "category": "Magic Night Fountains",
+  "unit": "Box",
+  "offerprice": "160",
+  "tamilName": "லெமன் ட்ரீ",
+  "imagename": "Super_Hero"
+},
 
   "Mega Asrafi": {
 
@@ -1517,54 +1493,6 @@
     "tamilName": "மெகா அஷ்ரஃபி",
 
     "imagename": "Mega_Asrafi"
-
-  },
-
-  "Pop Star": {
-
-    "price": 550,
-
-    "category": "Magic Night Fountains",
-
-    "unit": "Box",
-
-    "offerprice": "110",
-
-    "tamilName": "பாப் ஸ்டார்",
-
-    "imagename": "Pop_Star"
-
-  },
-
-  "Star Dum": {
-
-    "price": 650,
-
-    "category": "Magic Night Fountains",
-
-    "unit": "Box",
-
-    "offerprice": "130",
-
-    "tamilName": "ஸ்டார் டம்",
-
-    "imagename": "Star_Dum"
-
-  },
-
-  "Crackling Star": {
-
-    "price": 800,
-
-    "category": "Magic Night Fountains",
-
-    "unit": "Box",
-
-    "offerprice": "160",
-
-    "tamilName": "கிராக்லிங் ஸ்டார்",
-
-    "imagename": "Crackling_Star"
 
   },
 
@@ -2155,38 +2083,6 @@
     "tamilName": "மேஜிக் டிக் டாக்",
 
     "imagename": "Magic_Tiktok"
-
-  },
-
-  "Ring Cap": {
-
-    "price": 40,
-
-    "category": "Kids Special",
-
-    "unit": "Pack",
-
-    "offerprice": 8,
-
-    "tamilName": "ரிங் கேப்",
-
-    "imagename": "Ring_Cap"
-
-  },
-
-  "Roll Cap": {
-
-    "price": 400,
-
-    "category": "Kids Special",
-
-    "unit": "Pack",
-
-    "offerprice": 80,
-
-    "tamilName": "ரோல் கேப்",
-
-    "imagename": "Roll_Cap"
 
   },
 
