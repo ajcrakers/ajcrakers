@@ -359,12 +359,12 @@
     "tamilName": "டிஸ்கோ வீல்",
     "imagename": "Disco_wheel"
   },
-  "Lotus Wheel": {
-    "price": 600,
+  "4*4": {
+    "price": 750,
     "category": "Round Chakra",
     "unit": "Box",
-    "offerprice": "120",
-    "tamilName": "லோட்டஸ் வீல்",
+    "offerprice": "150",
+    "tamilName": "4*4",
     "imagename": "Lotus_Wheel"
   },
   "Rio Wheel": {
