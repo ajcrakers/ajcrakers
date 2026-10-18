@@ -399,14 +399,7 @@
     "tamilName": "பூந்தொட்டி அசோகா",
     "imagename": "Flowerpot_ashoka"
   },
-  "Color Kotti": {
-    "price": 825,
-    "category": "Digital Flower Pots",
-    "unit": "Box",
-    "offerprice": "165",
-    "tamilName": "கலர் கொட்டி",
-    "imagename": "Color_Kotti"
-  },
+  
   "F.P. deluxe (5 pcs)": {
     "price": 700,
     "category": "Digital Flower Pots",
@@ -1071,10 +1064,10 @@
     "imagename": "Magic_Tiktok"
   },
   "Men in Black (Ring & Gun)": {
-    "price": 600,
+    "price": 650,
     "category": "Kids Special",
     "unit": "Pack",
-    "offerprice": 120,
+    "offerprice": 130,
     "tamilName": "மென் இன் பிளாக் (ரிங் & கன்)",
     "imagename": "Men_in_Black_(Ring_and_Gun)"
   },
@@ -1243,6 +1236,22 @@
     "category": "Genz Sparklers",
     "unit": "Pack",
     "offerprice": 150,
+    "tamilName": "50 செ.மீ. எலக்ட்ரிக் கம்பி மத்தாப்பு",
+    "imagename": "50cm_Sparklers"
+  },
+    "50cm Rotating Sparklers": {
+    "price": 900,
+    "category": "Genz Sparklers",
+    "unit": "Pack",
+    "offerprice": 180,
+    "tamilName": "50 செ.மீ. எலக்ட்ரிக் கம்பி மத்தாப்பு",
+    "imagename": "50cm_Sparklers"
+  },
+      "50cm Rotating Sparklers (Multi Mix)": {
+    "price": 1000,
+    "category": "Genz Sparklers",
+    "unit": "Pack",
+    "offerprice": 200,
     "tamilName": "50 செ.மீ. எலக்ட்ரிக் கம்பி மத்தாப்பு",
     "imagename": "50cm_Sparklers"
   },
