@@ -408,14 +408,15 @@
     "tamilName": "எஃப்.பி. டீலக்ஸ் (5 பீஸ்)",
     "imagename": "FP deluxe 5 pcs"
   },
-  "Color Koti Delux": {
-    "price": 1475,
+    "Color Kotti": {
+    "price": 825,
     "category": "Digital Flower Pots",
     "unit": "Box",
-    "offerprice": "295",
-    "tamilName": "கலர் கொட்டி டீலக்ஸ்",
-    "imagename": "Color_Kotti_Delux"
+    "offerprice": "165",
+    "tamilName": "கலர் கொட்டி",
+    "imagename": "Color_Kotti"
   },
+
   "Baby Rocket": {
     "price": 200,
     "category": "Runner Rocket",
