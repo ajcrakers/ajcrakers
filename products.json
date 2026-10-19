@@ -416,7 +416,14 @@
     "tamilName": "கலர் கொட்டி",
     "imagename": "Color_Kotti"
   },
-
+    "Color Kotti Delux": {
+    "price": 1475,
+    "category": "Digital Flower Pots",
+    "unit": "Box",
+    "offerprice": "295",
+    "tamilName": "கலர் கொட்டி டீலக்ஸ்",
+    "imagename": "Color_Kotti"
+  },
   "Baby Rocket": {
     "price": 200,
     "category": "Runner Rocket",
