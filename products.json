@@ -400,11 +400,11 @@
     "imagename": "Flowerpot_ashoka"
   },
   
-  "F.P. deluxe (5 pcs)": {
-    "price": 700,
+  "F.P. OGreen (5 pcs)": {
+    "price": 850,
     "category": "Digital Flower Pots",
     "unit": "Box",
-    "offerprice": "140",
+    "offerprice": "170",
     "tamilName": "எஃப்.பி. டீலக்ஸ் (5 பீஸ்)",
     "imagename": "FP deluxe 5 pcs"
   },
@@ -601,14 +601,7 @@
     "tamilName": "7 கலர்ஸ்",
     "imagename": "7_Colors"
   },
-  "Penta (5 Pcs)": {
-    "price": 750,
-    "category": "Sky Display",
-    "unit": "Box",
-    "offerprice": "150",
-    "tamilName": "பென்டா (5 பீஸ்)",
-    "imagename": "Penta_(5_Pcs)"
-  },
+  
   "Army Force": {
     "price": 600,
     "category": "Sky Display",
@@ -713,6 +706,14 @@
     "tamilName": "அஷ்ரஃபி கோட்டி டீலக்ஸ்",
     "imagename": "Ashrafi_Koti_Delux"
   },
+    "YOYO Tri Color": {
+    "price": 1250,
+    "category": "Magic Night Fountains",
+    "unit": "Box",
+    "offerprice": "250",
+    "tamilName": "யோயோ டிரை கலர்",
+    "imagename": "Ashrafi_Koti_Delux"
+  },
   "Social Media 5Pcs": {
     "price": 900,
     "category": "Magic Night Fountains",
@@ -777,12 +778,20 @@
     "tamilName": "வேல்",
     "imagename": "Vel"
   },
-  "Tri color Fountain": {
+  "POPEYE Tri color Fountain": {
     "price": 1100,
     "category": "Magic Night Fountains",
     "unit": "Pack",
     "offerprice": 220,
-    "tamilName": "ட்ரை கலர் ஃபவுண்டன்",
+    "tamilName": "பாப்பாய் ட்ரை கலர் ஃபவுண்டன்",
+    "imagename": "Tri_color_fountain"
+  },
+   "Pink Forest Shower": {
+    "price": 950,
+    "category": "Magic Night Fountains",
+    "unit": "Pack",
+    "offerprice": 190,
+    "tamilName": "பிங்க் ஃபாரஸ்ட் ஷவர்",
     "imagename": "Tri_color_fountain"
   },
   "Fun N Fun shower": {
